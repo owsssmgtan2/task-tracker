@@ -22,6 +22,19 @@ class UserController extends Controller
         file_put_contents("json/users.json", json_encode($data));
     }
 
+    public function filter_users_datatable_reload($val)
+    {
+        if($val == 0){
+            $users = User::where("is_active",1)->orderBy("access_level")->get();
+        }else{
+            $users = User::where("is_active",1)->where("access_level","like","%".$val."%")->orderBy("access_level")->get();
+        }
+        
+
+        $data = array("data" => $users->toArray());
+        file_put_contents("json/users.json", json_encode($data));
+    }
+
     public function index()
     {
     	$this->users_datatable_reload();
@@ -73,5 +86,10 @@ class UserController extends Controller
         $user->save();
 
         $this->users_datatable_reload();
+    }
+
+    public function filter(Request $request)
+    {
+        $this->filter_users_datatable_reload($request->access_level);
     }
 }

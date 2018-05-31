@@ -1,11 +1,9 @@
-
-
 <?php $__env->startSection('main-content'); ?>
 	<div class="row">
 	    <div class="col-md-12 col-lg-12 col-sm-12">
 	        <div class="white-box">
 	            <div class="col-md-3 col-sm-4 col-xs-6 pull-right">
-	                <select class="form-control pull-right row b-none">
+	                <select class="form-control pull-right row b-none" id="filter_users">
 	                    <option value="0">ALL</option>
 	                    <option value="1">IT</option>
 	                    <option value="2">MIT - ADMIN</option>

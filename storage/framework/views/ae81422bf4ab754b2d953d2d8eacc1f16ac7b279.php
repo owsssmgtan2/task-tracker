@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('main-content'); ?>
 	<div class="white-box">
 
@@ -23,8 +21,8 @@
                 	<input type="hidden" id="st_name">
                 	<input type="hidden" id="o_id">
                 	<input type="hidden" id="o_name">
-                	<input type="text" id="o_list">
-                	<input type="text" id="s_list">
+                	<input type="hidden" id="o_list">
+                	<input type="hidden" id="s_list">
 
 
                 	<h3><?php echo FontAwesome::icon('clipboard'); ?> MIT TASKS</h3>
