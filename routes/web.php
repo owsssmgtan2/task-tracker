@@ -37,6 +37,8 @@ Route::get('/transactions', 'TaskController@index');
 Route::post('/tasks/create', 'TaskController@create');
 Route::patch('/tasks/update/{task}', 'TaskController@update');
 Route::patch('/tasks/delete/{task}', 'TaskController@delete');
+Route::post('/tasks/qasummary', 'TaskController@qa_summary');
+Route::post('/tasks/mitsummary', 'TaskController@mit_summary');
 
 Route::post('/subtasks/load', 'SubTaskController@load');
 Route::post('/subtasks/create', 'SubTaskController@create');

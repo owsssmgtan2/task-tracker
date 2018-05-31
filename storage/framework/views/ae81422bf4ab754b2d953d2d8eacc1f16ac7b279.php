@@ -6,9 +6,9 @@
             <!-- Nav tabs -->
             <ul class="nav customtab nav-tabs" role="tablist">
                 <li role="presentation" class="active"><a href="#mittask1" aria-controls="mittask" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="ti-home"></i></span><span class="hidden-xs"> MIT Transactions</span></a></li>
-                <li role="presentation" class=""><a href="#mittask2" aria-controls="mittask" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="ti-home"></i></span><span class="hidden-xs"> Summary</span></a></li>
+                <li role="presentation" class=""><a onclick="show_mit_summary();" href="#mittask2" aria-controls="mittask" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="ti-home"></i></span><span class="hidden-xs"> Summary</span></a></li>
                 <li role="presentation" class=""><a href="#qatask1" aria-controls="qatask" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="ti-user"></i></span> <span class="hidden-xs">QA Transactions</span></a></li>
-                <li role="presentation" class=""><a href="#qatask2" aria-controls="qatask" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="ti-user"></i></span> <span class="hidden-xs">Summary</span></a></li>
+                <li role="presentation" class=""><a href="#qatask2" aria-controls="qatask" role="tab" data-toggle="tab" aria-expanded="false" onclick="show_qa_summary();"><span class="visible-xs"><i class="ti-user"></i></span> <span class="hidden-xs">Summary</span></a></li>
                 <li role="presentation" class=""><a href="#gdtask1" aria-controls="gdtask" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="ti-email"></i></span> <span class="hidden-xs">GD Transactions</span></a></li>
                 <li role="presentation" class=""><a href="#gdtask2" aria-controls="gdtask" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="ti-email"></i></span> <span class="hidden-xs">Summary</span></a></li>
                 
@@ -23,8 +23,8 @@
                 	<input type="hidden" id="st_name">
                 	<input type="hidden" id="o_id">
                 	<input type="hidden" id="o_name">
-                	<input type="text" id="o_list">
-                	<input type="text" id="s_list">
+                	<input type="hidden" id="o_list">
+                	<input type="hidden" id="s_list">
 
 
                 	<h3><?php echo FontAwesome::icon('clipboard'); ?> MIT TASKS</h3>
@@ -141,6 +141,39 @@
 
                     <div class="clearfix"></div>
                 </div>
+
+                <div role="tabpanel" class="tab-pane fade" id="mittask2">
+
+					<h3><?php echo FontAwesome::icon('list-ol'); ?> MIT TASK SUMMARY <?php echo FontAwesome::icon('spinner', ['class' => 'fa-spin mit_sum']); ?></h3>
+
+                	<div class="panel panel-primary">
+		                    <div class="panel-body">
+
+		                        <div style="">
+		                            <table class="table table-hover color-table inverse-table">
+		                                <thead>
+		                                    <tr>
+		                                        <th>Task</th>
+		                                        <th>Subtask</th>
+		                                        <th>Outcome</th>
+		                                        <th>Sale Types</th>
+		                                    </tr>
+		                                </thead>
+
+		                                <tbody id="mit_summary_table">
+		                                </tbody>
+		                                
+		                            </table>
+		                        </div>
+
+		                        
+		                    </div>
+		                </div>
+
+                    <div class="clearfix"></div>
+                </div>
+
+
                 <div role="tabpanel" class="tab-pane fade" id="qatask1">
 
 					<h3><?php echo FontAwesome::icon('clipboard'); ?> QA TASKS</h3>
@@ -193,6 +226,37 @@
 
                     <div class="clearfix"></div>
                 </div>
+
+				<div role="tabpanel" class="tab-pane fade" id="qatask2">
+
+					<h3><?php echo FontAwesome::icon('list-ol'); ?> QA TASK SUMMARY <?php echo FontAwesome::icon('spinner', ['class' => 'fa-spin qa_sum']); ?></h3>
+
+                	<div class="panel panel-primary">
+		                    <div class="panel-body">
+
+		                        <div style="">
+		                            <table class="table table-hover color-table inverse-table">
+		                                <thead>
+		                                    <tr>
+		                                        <th>Task</th>
+		                                        <th>Subtask</th>
+		                                    </tr>
+		                                </thead>
+
+		                                <tbody id="qa_summary_table">
+		                                </tbody>
+		                                
+		                            </table>
+		                        </div>
+
+		                        
+		                    </div>
+		                </div>
+
+                    <div class="clearfix"></div>
+                </div>
+
+
                 <div role="tabpanel" class="tab-pane fade" id="gdtask1">
 
 					<h3><?php echo FontAwesome::icon('clipboard'); ?> GD TASKS</h3>

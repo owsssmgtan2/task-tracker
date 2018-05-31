@@ -75,6 +75,14 @@
     	document.getElementById(form_id).reset();
     }
 
+    function showspinner_summary(class_name){
+      $("." + class_name).css("visibility","visible");
+    }
+
+    function hidespinner_summary(class_name){
+      $("." + class_name).css("visibility","hidden");
+    }
+
     function refresh_datatable(table_id){
     	$("#" + table_id).DataTable().ajax.reload();
     }

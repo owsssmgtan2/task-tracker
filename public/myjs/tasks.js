@@ -75,3 +75,31 @@ $('#deleteTask').submit(function(e) {
 
 	});
 });
+
+function show_qa_summary(){
+	showspinner_summary("qa_sum");
+	$.post(globalUrl + '/tasks/qasummary', 
+		{
+			_token: globalToken,
+			_method: 'POST'
+		}, function(data, textStatus, xhr) {
+			removeChild("qa_summary_table");
+			$("#qa_summary_table").append(data);
+			hidespinner_summary("qa_sum");
+
+	});
+}
+
+function show_mit_summary(){
+	showspinner_summary("mit_sum");
+	$.post(globalUrl + '/tasks/mitsummary', 
+			{
+				_token: globalToken,
+				_method: 'POST'
+			}, function(data, textStatus, xhr) {
+				removeChild("mit_summary_table");
+				$("#mit_summary_table").append(data);
+				hidespinner_summary("mit_sum");
+
+		});
+}
