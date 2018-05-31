@@ -50,7 +50,7 @@ class OutcomeController extends Controller
         $newLog = new Log;
         $newLog->tracker_type = $request->type;
         $newLog->activity_type = "CREATE";
-        $newLog->log_details = "Created a new outcome from the task/subtask <b>".$newOutcome->task->name."/".$newOutcome->subtask->name."] with a name of <b>".$request->name."] and with a description of <b>".$request->description."</b>.";
+        $newLog->log_details = "Created a new outcome from the task/subtask <b>".$newOutcome->task->name."/".$newOutcome->subtask->name."</b> with a name of <b>".$request->name."</b> and with a description of <b>".$request->description."</b>.";
         $newLog->name = $request->name;
         $newLog->description = $request->description;
         $newLog->added_by = $newOutcome->added_by;
@@ -154,7 +154,7 @@ class OutcomeController extends Controller
                 $newLog = new Log;
                 $newLog->tracker_type = "mit";
                 $newLog->activity_type = "CREATE";
-                $newLog->log_details = "Created a new outcome from the task/subtask <b>".$newOutcome->task->name."/".$newOutcome->subtask->name."] with a name of <b>".$newOutcome->name."] and with a description of <b>".$newOutcome->description."</b>.";
+                $newLog->log_details = "Created a new outcome from the task/subtask <b>".$newOutcome->task->name."/".$newOutcome->subtask->name."</b> with a name of <b>".$newOutcome->name."</b> and with a description of <b>".$newOutcome->description."</b>.";
                 $newLog->name = $os->name;
                 $newLog->description = $os->description;
                 $newLog->added_by = Auth::user()->id;
