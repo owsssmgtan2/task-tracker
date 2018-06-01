@@ -10,12 +10,12 @@
                 <li role="presentation" class=""><a href="#qatask1" aria-controls="qatask" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="ti-user"></i></span> <span class="hidden-xs">QA Transactions</span></a></li>
                 <li role="presentation" class=""><a href="#qatask2" aria-controls="qatask" role="tab" data-toggle="tab" aria-expanded="false" onclick="show_qa_summary();"><span class="visible-xs"><i class="ti-user"></i></span> <span class="hidden-xs">Summary</span></a></li>
                 <li role="presentation" class=""><a href="#gdtask1" aria-controls="gdtask" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="ti-email"></i></span> <span class="hidden-xs">GD Transactions</span></a></li>
-                <li role="presentation" class=""><a href="#gdtask2" aria-controls="gdtask" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="ti-email"></i></span> <span class="hidden-xs">Summary</span></a></li>
+                
                 
             </ul>
             <!-- Tab panes -->
             <div class="tab-content">
-                <div role="tabpanel" class="tab-pane fade active in" id="mittask1">
+                <div role="tabpanel" class="tab-pane fade active in" id="mittask1"> <!-- MIT -->
 
                 	<input type="hidden" id="t_id">
                 	<input type="hidden" id="t_name">
@@ -74,7 +74,6 @@
 			                    </tbody>
 			                </table>
 			            </div>
-
 		            </div>
 
 		            <div id="mit_outcome" class="subtask">
@@ -105,7 +104,6 @@
 			                    </tbody>
 			                </table>
 			            </div>
-
 		            </div>
 
 		            <div id="mit_saletype" class="subtask">
@@ -135,46 +133,45 @@
 			                    </tbody>
 			                </table>
 			            </div>
-
 		            </div>
 
 
                     <div class="clearfix"></div>
                 </div>
 
-                <div role="tabpanel" class="tab-pane fade" id="mittask2">
+                <div role="tabpanel" class="tab-pane fade" id="mittask2"> <!-- Summary for MIT -->
 
 					<h3>@fa('list-ol') MIT TASK SUMMARY @fa('spinner', ['class' => 'fa-spin mit_sum'])</h3>
 
                 	<div class="panel panel-primary">
-		                    <div class="panel-body">
+	                    <div class="panel-body">
 
-		                        <div style="">
-		                            <table class="table table-hover color-table inverse-table">
-		                                <thead>
-		                                    <tr>
-		                                        <th>Task</th>
-		                                        <th>Subtask</th>
-		                                        <th>Outcome</th>
-		                                        <th>Sale Types</th>
-		                                    </tr>
-		                                </thead>
+	                        <div style="">
+	                            <table class="table table-hover color-table inverse-table">
+	                                <thead>
+	                                    <tr>
+	                                        <th>Task</th>
+	                                        <th>Subtask</th>
+	                                        <th>Outcome</th>
+	                                        <th>Sale Types</th>
+	                                    </tr>
+	                                </thead>
 
-		                                <tbody id="mit_summary_table">
-		                                </tbody>
-		                                
-		                            </table>
-		                        </div>
+	                                <tbody id="mit_summary_table">
+	                                </tbody>
+	                                
+	                            </table>
+	                        </div>
 
-		                        
-		                    </div>
-		                </div>
+	                        
+	                    </div>
+	                </div>
 
                     <div class="clearfix"></div>
                 </div>
 
 
-                <div role="tabpanel" class="tab-pane fade" id="qatask1">
+                <div role="tabpanel" class="tab-pane fade" id="qatask1"> <!-- QA -->
 
 					<h3>@fa('clipboard') QA TASKS</h3>
 					<button data-toggle='modal' data-type="qa" data-target="#mAddTask" class="btn btn-default btn-add">@fa('plus') ADD QA TASK</button>
@@ -227,7 +224,7 @@
                     <div class="clearfix"></div>
                 </div>
 
-				<div role="tabpanel" class="tab-pane fade" id="qatask2">
+				<div role="tabpanel" class="tab-pane fade" id="qatask2"> <!-- Summary for QA -->
 
 					<h3>@fa('list-ol') QA TASK SUMMARY @fa('spinner', ['class' => 'fa-spin qa_sum'])</h3>
 
@@ -257,7 +254,7 @@
                 </div>
 
 
-                <div role="tabpanel" class="tab-pane fade" id="gdtask1">
+                <div role="tabpanel" class="tab-pane fade" id="gdtask1"> <!-- GD -->
 
 					<h3>@fa('clipboard') GD TASKS</h3>
 					<button data-toggle='modal' data-type="gd" data-target="#mAddTask" class="btn btn-default btn-add">@fa('plus') ADD GD TASK</button>
@@ -307,7 +304,6 @@
 				            </div>
                     </div>
 
-                    
                     <div id="gd_difficulty" class="subtask_visible">
     	                    <h3>@fa('tachometer-alt') DIFFICULTIES</h3>
     						<button id="btn_gd_difficulty" data-toggle='modal' data-type="gd" data-target="#mAddDifficulty" class="btn btn-default btn-add">@fa('plus') ADD DIFFICULTY</button>

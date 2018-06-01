@@ -36,27 +36,87 @@
                 </div>
             </div>
         </div>
-        <!--/.row -->
-        <!--row -->
-        <!-- /.row -->
+
         <div class="row">
-            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                <div class="white-box">
-                    <h3 class="box-title">Products Yearly Sales</h3>
-                    <ul class="list-inline text-right">
-                        <li>
-                            <h5><i class="fa fa-circle m-r-5 text-info"></i>Mac</h5> </li>
-                        <li>
-                            <h5><i class="fa fa-circle m-r-5 text-inverse"></i>Windows</h5> </li>
-                    </ul>
-                    <div id="ct-visits" style="height: 405px;"></div>
+            <div class="col-md-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading"> With two column</div>
+                    <div class="panel-wrapper collapse in" aria-expanded="true">
+                        <div class="panel-body">
+                            <form action="#">
+                                <div class="form-body">
+                                    <label class="pull-right">January 1, 2018 00:00:00</label>
+                                    <h3 class="box-title">OSE MANGUILIMOTAN - MIT STAFF (PH)</h3>
+                                    
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Task*</label>
+                                                <select class="form-control" data-placeholder="Choose a Category" tabindex="1">
+                                                    <option value="Category 1">Category 1</option>
+                                                    <option value="Category 2">Category 2</option>
+                                                    <option value="Category 3">Category 5</option>
+                                                    <option value="Category 4">Category 4</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Subtask*</label>
+                                                <select class="form-control" data-placeholder="Choose a Category" tabindex="1">
+                                                    <option value="Category 1">Category 1</option>
+                                                    <option value="Category 2">Category 2</option>
+                                                    <option value="Category 3">Category 5</option>
+                                                    <option value="Category 4">Category 4</option>
+                                                </select>
+                                            </div>
+                                        <!--/span-->
+                                        </div>
+                                    </div>
+                                    <!--/row-->
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Stamp*</label>
+                                                <select class="form-control">
+                                                    <option value="0">Start</option>
+                                                    <option value="1">End</option>
+                                                </select> <span class="help-block"> Select your gender </span> </div>
+                                        </div>
+                                        <!--/span-->
+                                    </div>
+                                    <!--/row-->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="control-label">Note</label>
+                                                <textarea rows="4" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                    </div>
+                                    <!--/row-->
+                                </div>
+                                <div class="form-actions pull-right">
+                                    <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+                                    <button type="button" class="btn btn-default">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!--/.row -->
+        <!--row -->
+        <!-- /.row -->
         <!-- ============================================================== -->
         <!-- table -->
         <!-- ============================================================== -->
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-12 col-lg-12 col-sm-12">
                 <div class="white-box">
                     <div class="col-md-3 col-sm-4 col-xs-6 pull-right">
@@ -135,108 +195,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- ============================================================== -->
-        <!-- chat-listing & recent comments -->
-        <!-- ============================================================== -->
-        <div class="row">
-            <!-- .col -->
-            <div class="col-md-12 col-lg-8 col-sm-12">
-                <div class="white-box">
-                    <h3 class="box-title">Recent Comments</h3>
-                    <div class="comment-center p-t-10">
-                        <div class="comment-body">
-                            <div class="user-img"> <img src="../plugins/images/users/pawandeep.jpg" alt="user" class="img-circle">
-                            </div>
-                            <div class="mail-contnet">
-                                <h5>Pavan kumar</h5><span class="time">10:20 AM   20  may 2016</span>
-                                <br/><span class="mail-desc">Donec ac condimentum massa. Etiam pellentesque pretium lacus. Phasellus ultricies dictum suscipit. Aenean commodo dui pellentesque molestie feugiat. Aenean commodo dui pellentesque molestie feugiat</span> <a href="javacript:void(0)" class="btn btn btn-rounded btn-default btn-outline m-r-5"><i class="ti-check text-success m-r-5"></i>Approve</a><a href="javacript:void(0)" class="btn-rounded btn btn-default btn-outline"><i class="ti-close text-danger m-r-5"></i> Reject</a>
-                            </div>
-                        </div>
-                        <div class="comment-body">
-                            <div class="user-img"> <img src="../plugins/images/users/sonu.jpg" alt="user" class="img-circle">
-                            </div>
-                            <div class="mail-contnet">
-                                <h5>Sonu Nigam</h5><span class="time">10:20 AM   20  may 2016</span>
-                                <br/><span class="mail-desc">Donec ac condimentum massa. Etiam pellentesque pretium lacus. Phasellus ultricies dictum suscipit. Aenean commodo dui pellentesque molestie feugiat. Aenean commodo dui pellentesque molestie feugiat</span>
-                            </div>
-                        </div>
-                        <div class="comment-body b-none">
-                            <div class="user-img"> <img src="../plugins/images/users/arijit.jpg" alt="user" class="img-circle">
-                            </div>
-                            <div class="mail-contnet">
-                                <h5>Arijit singh</h5><span class="time">10:20 AM   20  may 2016</span>
-                                <br/><span class="mail-desc">Donec ac condimentum massa. Etiam pellentesque pretium lacus. Phasellus ultricies dictum suscipit. Aenean commodo dui pellentesque molestie feugiat. Aenean commodo dui pellentesque molestie feugiat</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="panel">
-                    <div class="sk-chat-widgets">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                CHAT LISTING
-                            </div>
-                            <div class="panel-body">
-                                <ul class="chatonline">
-                                    <li>
-                                        <div class="call-chat">
-                                            <button class="btn btn-success btn-circle btn-lg" type="button"><i class="fa fa-phone"></i></button>
-                                            <button class="btn btn-info btn-circle btn-lg" type="button"><i class="fa fa-comments-o"></i></button>
-                                        </div>
-                                        <a href="javascript:void(0)"><img src="../plugins/images/users/varun.jpg" alt="user-img" class="img-circle"> <span>Varun Dhavan <small class="text-success">online</small></span></a>
-                                    </li>
-                                    <li>
-                                        <div class="call-chat">
-                                            <button class="btn btn-success btn-circle btn-lg" type="button"><i class="fa fa-phone"></i></button>
-                                            <button class="btn btn-info btn-circle btn-lg" type="button"><i class="fa fa-comments-o"></i></button>
-                                        </div>
-                                        <a href="javascript:void(0)"><img src="../plugins/images/users/genu.jpg" alt="user-img" class="img-circle"> <span>Genelia Deshmukh <small class="text-warning">Away</small></span></a>
-                                    </li>
-                                    <li>
-                                        <div class="call-chat">
-                                            <button class="btn btn-success btn-circle btn-lg" type="button"><i class="fa fa-phone"></i></button>
-                                            <button class="btn btn-info btn-circle btn-lg" type="button"><i class="fa fa-comments-o"></i></button>
-                                        </div>
-                                        <a href="javascript:void(0)"><img src="../plugins/images/users/ritesh.jpg" alt="user-img" class="img-circle"> <span>Ritesh Deshmukh <small class="text-danger">Busy</small></span></a>
-                                    </li>
-                                    <li>
-                                        <div class="call-chat">
-                                            <button class="btn btn-success btn-circle btn-lg" type="button"><i class="fa fa-phone"></i></button>
-                                            <button class="btn btn-info btn-circle btn-lg" type="button"><i class="fa fa-comments-o"></i></button>
-                                        </div>
-                                        <a href="javascript:void(0)"><img src="../plugins/images/users/arijit.jpg" alt="user-img" class="img-circle"> <span>Arijit Sinh <small class="text-muted">Offline</small></span></a>
-                                    </li>
-                                    <li>
-                                        <div class="call-chat">
-                                            <button class="btn btn-success btn-circle btn-lg" type="button"><i class="fa fa-phone"></i></button>
-                                            <button class="btn btn-info btn-circle btn-lg" type="button"><i class="fa fa-comments-o"></i></button>
-                                        </div>
-                                        <a href="javascript:void(0)"><img src="../plugins/images/users/govinda.jpg" alt="user-img" class="img-circle"> <span>Govinda Star <small class="text-success">online</small></span></a>
-                                    </li>
-                                    <li>
-                                        <div class="call-chat">
-                                            <button class="btn btn-success btn-circle btn-lg" type="button"><i class="fa fa-phone"></i></button>
-                                            <button class="btn btn-info btn-circle btn-lg" type="button"><i class="fa fa-comments-o"></i></button>
-                                        </div>
-                                        <a href="javascript:void(0)"><img src="../plugins/images/users/hritik.jpg" alt="user-img" class="img-circle"> <span>John Abraham<small class="text-success">online</small></span></a>
-                                    </li>
-                                    <li>
-                                        <div class="call-chat">
-                                            <button class="btn btn-success btn-circle btn-lg" type="button"><i class="fa fa-phone"></i></button>
-                                            <button class="btn btn-info btn-circle btn-lg" type="button"><i class="fa fa-comments-o"></i></button>
-                                        </div>
-                                        <a href="javascript:void(0)"><img src="../plugins/images/users/varun.jpg" alt="user-img" class="img-circle"> <span>Varun Dhavan <small class="text-success">online</small></span></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /.col -->
-        </div>
+        </div> -->
+   
     </div>
 @endsection
