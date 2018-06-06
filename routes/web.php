@@ -69,4 +69,7 @@ Route::post('/saletypes/paste', 'SaleTypeController@paste');
 
 Route::get('/logs', 'LogController@index');
 
+Route::post('/tracks/subtaskchange', 'TrackerController@subtaskchange');
+Route::post('/tracks/saveqatransaction', 'TrackerController@saveqatransaction');
+
 

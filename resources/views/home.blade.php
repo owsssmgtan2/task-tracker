@@ -40,24 +40,23 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-info">
-                    <div class="panel-heading"> With two column</div>
+                    <div class="panel-heading"> Quality Tracker</div>
                     <div class="panel-wrapper collapse in" aria-expanded="true">
                         <div class="panel-body">
-                            <form action="#">
+                            <form id="addTransactionQA">
                                 <div class="form-body">
-                                    <label class="pull-right">January 1, 2018 00:00:00</label>
-                                    <h3 class="box-title">OSE MANGUILIMOTAN - MIT STAFF (PH)</h3>
+                                    <h3 class="box-title">{{ $name }}</h3>
                                     
                                     <hr>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Task*</label>
-                                                <select class="form-control" data-placeholder="Choose a Category" tabindex="1">
-                                                    <option value="Category 1">Category 1</option>
-                                                    <option value="Category 2">Category 2</option>
-                                                    <option value="Category 3">Category 5</option>
-                                                    <option value="Category 4">Category 4</option>
+                                                <select class="form-control" id="task_select_qa" required>
+                                                    <option value="">-- Please Select --</option>
+                                                    @foreach($qtasks as $qt)
+                                                        <option value="{{$qt->id}}">{{$qt->name}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -65,11 +64,8 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Subtask*</label>
-                                                <select class="form-control" data-placeholder="Choose a Category" tabindex="1">
-                                                    <option value="Category 1">Category 1</option>
-                                                    <option value="Category 2">Category 2</option>
-                                                    <option value="Category 3">Category 5</option>
-                                                    <option value="Category 4">Category 4</option>
+                                                <select class="form-control" id="subtask_select_qa">
+                                                    
                                                 </select>
                                             </div>
                                         <!--/span-->
@@ -80,10 +76,11 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Stamp*</label>
-                                                <select class="form-control">
-                                                    <option value="0">Start</option>
-                                                    <option value="1">End</option>
-                                                </select> <span class="help-block"> Select your gender </span> </div>
+                                                <select class="form-control" id="stamp_qa">
+                                                    <option value="Start">Start</option>
+                                                    <option value="End">End</option>
+                                                </select>
+                                            </div>
                                         </div>
                                         <!--/span-->
                                     </div>
@@ -92,7 +89,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="control-label">Note</label>
-                                                <textarea rows="4" class="form-control"></textarea>
+                                                <textarea id="notes_qa" rows="4" class="form-control"></textarea>
                                             </div>
                                         </div>
                                         <!--/span-->
@@ -100,7 +97,8 @@
                                     <!--/row-->
                                 </div>
                                 <div class="form-actions pull-right">
-                                    <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+                                    @fa('spinner', ['class' => 'fa-spin'])
+                                    <input type="submit" class="btn btn-success" value="Save">
                                     <button type="button" class="btn btn-default">Cancel</button>
                                 </div>
                             </form>

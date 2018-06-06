@@ -92,33 +92,34 @@
     }
 
     function show_alertbox(str,str2,type){
-    	$("#" + str2).modal('toggle');
+      if(str2){
+        $("#" + str2).modal('toggle');
+      }
+    	
+      if(type == "add"){
+          $("#panel_container_add").show();
+          $("#panel_content_add").html(str);
 
+          setTimeout(function(){ 
+              $("#panel_container_add").fadeOut(1000);
+           }, 3000);
 
-        if(type == "add"){
-            $("#panel_container_add").show();
-            $("#panel_content_add").html(str);
+      }else if(type == "edit"){
+          $("#panel_container_edit").show();
+          $("#panel_content_edit").html(str);
 
-            setTimeout(function(){ 
-                $("#panel_container_add").fadeOut(1000);
-             }, 3000);
+          setTimeout(function(){ 
+              $("#panel_container_edit").fadeOut(1000);
+           }, 3000);
 
-        }else if(type == "edit"){
-            $("#panel_container_edit").show();
-            $("#panel_content_edit").html(str);
+      }else if(type == "delete"){
+          $("#panel_container_delete").show();
+          $("#panel_content_delete").html(str);
 
-            setTimeout(function(){ 
-                $("#panel_container_edit").fadeOut(1000);
-             }, 3000);
-
-        }else if(type == "delete"){
-            $("#panel_container_delete").show();
-            $("#panel_content_delete").html(str);
-
-            setTimeout(function(){ 
-                $("#panel_container_delete").fadeOut(1000);
-             }, 3000);
-        }
+          setTimeout(function(){ 
+              $("#panel_container_delete").fadeOut(1000);
+           }, 3000);
+      }
     	
     }
 
@@ -178,6 +179,7 @@
 <script src="<?php echo e(url('myjs/outcomes.js')); ?>"></script>
 <script src="<?php echo e(url('myjs/saletypes.js')); ?>"></script>
 <script src="<?php echo e(url('myjs/copypaste.js')); ?>"></script>
+<script src="<?php echo e(url('myjs/trackers.js')); ?>"></script>
 
 
 
