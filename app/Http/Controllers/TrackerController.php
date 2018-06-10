@@ -9,12 +9,24 @@ use App\SubTask;
 use App\Outcome;
 use App\SaleType;
 use App\Tracker;
+use App\User;
 
 use Auth;
 use \Carbon\Carbon;
 
 class TrackerController extends Controller
 {
+    public function qa_tracker_datatable_reload($user_id,$date){
+        $qa_tracks = Tracker::with('task','subtask')->where("is_active",1)->where("tracker_type","qa")->where("added_by",$user_id)->whereDate("created_at",$date)->orderBy("created_at","desc")->get();
+
+        foreach($qa_tracks as $qt){
+            $qt->added_by = User::find($qt->added_by)->username;
+        }
+
+        $data = array("data" => $qa_tracks->toArray());
+        file_put_contents("json/qa_tracker.json", json_encode($data));
+    }
+
     public function subtaskchange(Request $request){
 
     	$list = "";
@@ -42,6 +54,25 @@ class TrackerController extends Controller
     	$newTransaction->added_by = Auth::user()->id;
 
     	$newTransaction->save();
+
+        $this->qa_tracker_datatable_reload($newTransaction->added_by,Carbon::today()->toDateString());
+
+    }
+
+    public function changedate(Request $request){
+        $this->qa_tracker_datatable_reload(Auth::user()->id,Carbon::parse($request->newdate)->toDateString());
+    }
+
+    public function editqatransaction(Request $request, Tracker $track){
+
+        $track->task_id = $request->task_id;
+        $track->subtask_id = $request->subtask_id;
+        $track->trans_stamp = $request->trans_stamp;
+        $track->notes = $request->notes;
+
+        $track->save();
+
+        $this->qa_tracker_datatable_reload($track->added_by,Carbon::today()->toDateString());
 
     }
 }

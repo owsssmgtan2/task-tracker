@@ -888,5 +888,98 @@ var log_dtb = $("#logs_dtb").DataTable({
         ordering: true
     });
 
+var qa_tracks_dtb = $("#qa_tracks_dtb").DataTable({ 
+        ajax: globalUrl + "/json/qa_tracker.json",
+        columns: [
+            { "data": "id"},//0
+            { "data": "added_by" },//1
+            { "data": "created_at" },//2
+            { "data": "created_at" },//3
+            { "data": "task" },//4
+            { "data": "subtask" },//5
+            { "data": "trans_stamp" },//6
+            { "data": "notes" },//7
+            { 
+              "data": null,
+              "className": "editBtn",
+              "render": function ( data, type, full, meta ) {
+                    return '<input type="button" class="btn btn-info" value="EDIT">';
+                }
+            },
+            
+        ],
+        columnDefs: [
+            {
+                "targets": [ 0 ],
+                "visible": false,
+                "searchable": false
+            },
+            {
+                "targets": 2,
+                "render": function ( data, type, full, meta ) {
+                    return splitDate(data,0);
+                }
+            },
+            {
+                "targets": 3,
+                "render": function ( data, type, full, meta ) {
+                    return splitDate(data,1);
+                }
+            },
+            {
+                "targets": 4,
+                "render": function ( data, type, full, meta ) {
+                    return data.name;
+                }
+            },
+            {
+                "targets": 5,
+                "render": function ( data, type, full, meta ) {
+                    if(data){
+                        return data.name;  
+                    } else{
+                        return "";
+                    } 
+                     
+                }
+            },
+            {
+                "targets": 6,
+                "render": function ( data, type, full, meta ) {
+                    if(data == "Start"){
+                        return '<span class="label label-success label-rouded">Start</span>';
+                    }else if(data == "End"){
+                        return '<span class="label label-primary label-rouded">End</span>';
+                    }
+                }
+            },
+        ],
+        deferRender: true,
+        bPaginate: true,
+        bLengthChange: true,
+        info: true,
+        order: [],
+        ordering: true
+    });
+
+qa_tracks_dtb.on('click', 'tbody tr td.editBtn', function() {
+        
+        if (qa_tracks_dtb.cell(this).index().column > 1) {
+            let t = qa_tracks_dtb.row(this).data();
+            $("#editTrackQA_edit").val(t.id);
+            $("#e_task_select_qa").val(t.task_id).change();
+            $("#e_stamp_qa").val(t.trans_stamp);
+            $("#e_notes_qa").val(t.notes);
+
+            setTimeout(function(){
+                $("#e_subtask_select_qa").val(t.subtask_id);
+            }, 1500);
+
+            
+            $("#mEditTrackQA").modal('toggle');
+        }
+        
+    });
+
 
 $(".dataTables_filter").addClass('pull-right');

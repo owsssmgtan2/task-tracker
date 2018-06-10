@@ -32,6 +32,8 @@ class HomeController extends Controller
 
         $name = Auth::user()->name . " - " . $this->role_name(Auth::user()->access_level) . " (" . Auth::user()->site . ")";
 
+        app('App\Http\Controllers\TrackerController')->qa_tracker_datatable_reload(Auth::user()->id,Carbon::today()->toDateString());
+
         $qtasks = Task::where("type","qa")->where("is_active",1)->orderBy("name")->get();
 
         return view('home',compact('qtasks'))

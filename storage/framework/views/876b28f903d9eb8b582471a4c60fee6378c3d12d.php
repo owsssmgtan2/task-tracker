@@ -168,6 +168,16 @@
         tbody.removeChild(tbody.firstChild);
       }
     }
+
+    function splitDate(date,num){
+      let split_result = date.split(" ");
+
+      if(num == 0){
+        return convertDate(split_result[num]);
+      }else{
+        return split_result[num];
+      }
+    }
 </script>
 
 <script src="<?php echo e(url('myjs/main.js')); ?>"></script>

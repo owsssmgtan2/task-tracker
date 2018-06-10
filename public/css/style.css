@@ -24,7 +24,12 @@
 	display: none;
 }
 
-#account_name,#subtask_account_name,#outcome_account_name,#image_account_name,#difficulty_account_name,#saletype_account_name{ /*to indicate the name*/
+#account_name,
+#subtask_account_name,
+#outcome_account_name,
+#image_account_name,
+#difficulty_account_name,
+#saletype_account_name{ /*to indicate the name*/
 	color:#83AED3;
 }
 
@@ -47,10 +52,16 @@
 	cursor:pointer;
 }
 
-#btn_mit_outcome_paste,#btn_mit_outcome_paste2{
+#btn_mit_outcome_paste,
+#btn_mit_outcome_paste2{
 	margin-left:5px;
 }
 
-#mit_summary_table tr td:first-child, #qa_summary_table tr td:first-child{
+#mit_summary_table tr td:first-child, 
+#qa_summary_table tr td:first-child{
 	font-weight: bold;
+}
+
+.btn-choosedate {
+	margin-bottom:7px;
 }

@@ -19,4 +19,8 @@ class SaleType extends Model
     public function outcome (){
         return $this->belongsTo(Outcome::class)->select("id", "name", "description");
     }
+
+    public function trackers (){
+        return $this->hasMany(Tracker::class, "saletype_id", "id");
+    }
 }

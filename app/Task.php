@@ -17,4 +17,8 @@ class Task extends Model
     public function saletypes (){
         return $this->hasMany(SaleType::class, "task_id", "id");
     }
+
+    public function trackers (){
+        return $this->hasMany(Tracker::class, "task_id", "id");
+    }
 }
