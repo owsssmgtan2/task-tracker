@@ -89,7 +89,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="control-label">Note</label>
-                                                <textarea id="notes_qa" rows="4" class="form-control"></textarea>
+                                                <textarea id="notes_qa" autofocus="true" rows="4" class="form-control"></textarea>
                                             </div>
                                         </div>
                                         <!--/span-->
@@ -99,7 +99,7 @@
                                 <div class="form-actions pull-right">
                                     @fa('spinner', ['class' => 'fa-spin'])
                                     <input type="submit" class="btn btn-success" value="Save">
-                                    <button type="button" class="btn btn-default">Clear</button>
+                                    <button onclick="clearTracker('addTransactionQA');" type="button" class="btn btn-default">Clear</button>
                                 </div>
                             </form>
                         </div>

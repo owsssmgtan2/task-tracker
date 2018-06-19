@@ -27,6 +27,7 @@ $(document).on('change','#e_task_select_qa',function(){
 });
 
 $(document).on('change','#choosedate',function(){
+	current_date = new Date($("#choosedate").val());
     $.post(globalUrl + '/tracks/changedate', 
     	{
     		_token: globalToken,
@@ -63,6 +64,7 @@ $('#addTransactionQA').submit(function(e) {
 		}, function(data, textStatus, xhr) {
 			refresh_datatable("qa_tracks_dtb");
 			hidespinner("addTransactionQA");
+			removeChild("subtask_select_qa");
 			show_alertbox('You added a new transaction.','','add');
 
 	});

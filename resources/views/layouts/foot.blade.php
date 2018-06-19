@@ -33,6 +33,8 @@
 	var globalUrl = "{{url('/')}}";
 	var globalToken = "{{ csrf_token() }}";
 
+  var current_date = new Date();
+
 	var monthNames = [
       "January", "February", "March",
       "April", "May", "June", "July",
@@ -178,6 +180,31 @@
         return split_result[num];
       }
     }
+
+    function clearTracker(id)
+    {
+      document.getElementById(id).reset();
+      removeChild("subtask_select_qa");
+    }
+
+    // // jQuery plugin. Called on a jQuery object, not directly.
+    // jQuery.fn.simulateKeyPress = function (character) {
+    //   // Internally calls jQuery.event.trigger with arguments (Event, data, elem).
+    //   // That last argument, 'elem', is very important!
+    //   jQuery(this).trigger({ type: 'keypress', which: character.charCodeAt(0) });
+    // };
+
+    // jQuery(function ($) {
+    //   // Bind event handler
+    //   $('#notes_qa').keypress(function (e) {
+    //   });
+    //   // Simulate the key press
+    //   $('#notes_qa').simulateKeyPress('o');
+    //   $('#notes_qa').simulateKeyPress('s');
+    //   $('#notes_qa').simulateKeyPress('e');
+    // });
+
+
 </script>
 
 <script src="{{url('myjs/main.js')}}"></script>

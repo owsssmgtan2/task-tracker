@@ -903,7 +903,10 @@ var qa_tracks_dtb = $("#qa_tracks_dtb").DataTable({
               "data": null,
               "className": "editBtn",
               "render": function ( data, type, full, meta ) {
+                    if (current_date.toDateString() == new Date().toDateString())
                     return '<input type="button" class="btn btn-info" value="EDIT">';
+                    else
+                    return '';
                 }
             },
             
