@@ -965,6 +965,86 @@ var qa_tracks_dtb = $("#qa_tracks_dtb").DataTable({
         ordering: true
     });
 
+var gd_tracks_dtb = $("#gd_tracks_dtb").DataTable({ 
+        ajax: globalUrl + "/json/gd_tracker.json",
+        columns: [
+            { "data": "id"},//0
+            { "data": "added_by" },//1
+            { "data": "created_at" },//2
+            { "data": "created_at" },//3
+            { "data": "task" },//4
+            { "data": "image" },//5
+            { "data": "difficulty" },//6
+            { "data": "ticket_id" },//6
+            { "data": "sku" },//6
+            { "data": "notes" },//7
+            { 
+              "data": null,
+              "className": "editBtn",
+              "render": function ( data, type, full, meta ) {
+                    if (current_date.toDateString() == new Date().toDateString())
+                    return '<input type="button" class="btn btn-info" value="EDIT">';
+                    else
+                    return '';
+                }
+            },
+            
+        ],
+        columnDefs: [
+            {
+                "targets": [ 0 ],
+                "visible": false,
+                "searchable": false
+            },
+            {
+                "targets": 2,
+                "render": function ( data, type, full, meta ) {
+                    return splitDate(data,0);
+                }
+            },
+            {
+                "targets": 3,
+                "render": function ( data, type, full, meta ) {
+                    return splitDate(data,1);
+                }
+            },
+            {
+                "targets": 4,
+                "render": function ( data, type, full, meta ) {
+                    return data.name;
+                }
+            },
+            {
+                "targets": 5,
+                "render": function ( data, type, full, meta ) {
+                    if(data){
+                        return data.name;  
+                    } else{
+                        return "";
+                    } 
+                     
+                }
+            },
+            {
+                "targets": 6,
+                "render": function ( data, type, full, meta ) {
+                    if(data){
+                        return data.name;  
+                    } else{
+                        return "";
+                    } 
+                     
+                }
+            },
+        ],
+        deferRender: true,
+        bPaginate: true,
+        bLengthChange: true,
+        info: true,
+        order: [],
+        ordering: true
+    });
+
 qa_tracks_dtb.on('click', 'tbody tr td.editBtn', function() {
         
         if (qa_tracks_dtb.cell(this).index().column > 1) {
@@ -980,6 +1060,23 @@ qa_tracks_dtb.on('click', 'tbody tr td.editBtn', function() {
 
             
             $("#mEditTrackQA").modal('toggle');
+        }
+        
+    });
+
+gd_tracks_dtb.on('click', 'tbody tr td.editBtn', function() {
+        
+        if (gd_tracks_dtb.cell(this).index().column > 1) {
+            let t = gd_tracks_dtb.row(this).data();
+            $("#editTrackGD_edit").val(t.id);
+            $("#e_task_select_gd").val(t.task_id);
+            $("#e_image_select_gd").val(t.image_id);
+            $("#e_difficulty_select_gd").val(t.difficulty_id);
+            $("#e_ticket_text_gd").val(t.ticket_id);
+            $("#e_sku_text_gd").val(t.sku);
+            $("#e_notes_gd").val(t.notes);
+            
+            $("#mEditTrackGD").modal('toggle');
         }
         
     });

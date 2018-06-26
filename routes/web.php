@@ -1,6 +1,6 @@
 <?php
 
-
+date_default_timezone_set("Australia/Melbourne");
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -73,5 +73,8 @@ Route::post('/tracks/subtaskchange', 'TrackerController@subtaskchange');
 Route::post('/tracks/saveqatransaction', 'TrackerController@saveqatransaction');
 Route::post('/tracks/changedate', 'TrackerController@changedate');
 Route::patch('/tracks/editqatransaction/{track}', 'TrackerController@editqatransaction');
+
+Route::post('/tracks/savegdtransaction', 'TrackerController@savegdtransaction');
+Route::patch('/tracks/editgdtransaction/{track}', 'TrackerController@editgdtransaction');
 
 

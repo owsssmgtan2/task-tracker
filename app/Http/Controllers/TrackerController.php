@@ -27,6 +27,17 @@ class TrackerController extends Controller
         file_put_contents("json/qa_tracker.json", json_encode($data));
     }
 
+    public function gd_tracker_datatable_reload($user_id,$date){
+        $gd_tracks = Tracker::with('task','image','difficulty')->where("is_active",1)->where("tracker_type","gd")->where("added_by",$user_id)->whereDate("created_at",$date)->orderBy("created_at","desc")->get();
+
+        foreach($gd_tracks as $gt){
+            $gt->added_by = User::find($gt->added_by)->username;
+        }
+
+        $data = array("data" => $gd_tracks->toArray());
+        file_put_contents("json/gd_tracker.json", json_encode($data));
+    }
+
     public function subtaskchange(Request $request){
 
     	$list = "";
@@ -59,8 +70,32 @@ class TrackerController extends Controller
 
     }
 
+    public function savegdtransaction(Request $request){
+        $newTransaction = new Tracker();
+
+        $newTransaction->tracker_type = "gd";
+        $newTransaction->task_id = $request->task_id;
+        $newTransaction->image_id = $request->image_id;
+        $newTransaction->difficulty_id = $request->difficulty_id;
+        $newTransaction->sku = $request->sku_id;
+        $newTransaction->ticket_id = $request->ticket_id;
+        $newTransaction->notes = $request->notes;
+        $newTransaction->is_active = 1;
+        $newTransaction->added_by = Auth::user()->id;
+
+        $newTransaction->save();
+
+        $this->gd_tracker_datatable_reload($newTransaction->added_by,Carbon::today()->toDateString());
+
+    }
+
     public function changedate(Request $request){
-        $this->qa_tracker_datatable_reload(Auth::user()->id,Carbon::parse($request->newdate)->toDateString());
+        if($request->type == 'qa'){
+            $this->qa_tracker_datatable_reload(Auth::user()->id,Carbon::parse($request->newdate)->toDateString());
+        }else if($request->type == 'gd'){
+            $this->gd_tracker_datatable_reload(Auth::user()->id,Carbon::parse($request->newdate)->toDateString());
+        }
+        
     }
 
     public function editqatransaction(Request $request, Tracker $track){
@@ -73,6 +108,21 @@ class TrackerController extends Controller
         $track->save();
 
         $this->qa_tracker_datatable_reload($track->added_by,Carbon::today()->toDateString());
+
+    }
+
+    public function editgdtransaction(Request $request, Tracker $track){
+
+        $track->task_id = $request->task_id;
+        $track->image_id = $request->image_id;
+        $track->difficulty_id = $request->difficulty_id;
+        $track->ticket_id = $request->ticket_id;
+        $track->sku = $request->sku_id;
+        $track->notes = $request->notes;
+
+        $track->save();
+
+        $this->gd_tracker_datatable_reload($track->added_by,Carbon::today()->toDateString());
 
     }
 }

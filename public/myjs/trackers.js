@@ -32,10 +32,25 @@ $(document).on('change','#choosedate',function(){
     	{
     		_token: globalToken,
     		_method: 'POST',
-    		newdate: $("#choosedate").val()
+    		newdate: $("#choosedate").val(),
+    		type: 'qa'
 
     	}, function(data, textStatus, xhr) {
     		refresh_datatable("qa_tracks_dtb");
+    });
+});
+
+$(document).on('change','#choosedate_gd',function(){
+	current_date = new Date($("#choosedate_gd").val());
+    $.post(globalUrl + '/tracks/changedate', 
+    	{
+    		_token: globalToken,
+    		_method: 'POST',
+    		newdate: $("#choosedate_gd").val(),
+    		type: 'gd'
+
+    	}, function(data, textStatus, xhr) {
+    		refresh_datatable("gd_tracks_dtb");
     });
 });
 
@@ -70,6 +85,30 @@ $('#addTransactionQA').submit(function(e) {
 	});
 });
 
+$('#addTransactionGD').submit(function(e) {
+
+	e.preventDefault();
+
+	showspinner("addTransactionGD");
+	$.post(globalUrl + '/tracks/savegdtransaction', 
+		{
+			_token: globalToken,
+			_method: 'POST',
+			task_id: $("#task_select_gd").val(),
+			image_id: $("#image_select_gd").val(),
+			difficulty_id: $("#difficulty_select_gd").val(),
+			sku_id: $("#sku_text_gd").val(),
+			ticket_id: $("#ticket_text_gd").val(),
+			notes: $("#notes_gd").val()
+
+		}, function(data, textStatus, xhr) {
+			refresh_datatable("gd_tracks_dtb");
+			hidespinner("addTransactionGD");
+			show_alertbox('You added a new transaction.','','add');
+
+	});
+});
+
 $('#editTrackQA').submit(function(e) {
 
 	e.preventDefault();
@@ -96,6 +135,30 @@ $('#editTrackQA').submit(function(e) {
 			refresh_datatable("qa_tracks_dtb");
 			hidespinner("editTrackQA");
 			show_alertbox('You edited a transaction.','mEditTrackQA','edit');
+
+	});
+});
+
+$('#editTrackGD').submit(function(e) {
+
+	e.preventDefault();
+
+	showspinner("editTrackGD");
+	$.post(globalUrl + '/tracks/editgdtransaction/' + $("#editTrackGD_edit").val(), 
+		{
+			_token: globalToken,
+			_method: 'PATCH',
+			task_id: $("#e_task_select_gd").val(),
+			image_id: $("#e_image_select_gd").val(),
+			difficulty_id: $("#e_difficulty_select_gd").val(),
+			sku_id: $("#e_sku_text_gd").val(),
+			ticket_id: $("#e_ticket_text_gd").val(),
+			notes: $("#e_notes_gd").val()
+
+		}, function(data, textStatus, xhr) {
+			refresh_datatable("gd_tracks_dtb");
+			hidespinner("editTrackGD");
+			show_alertbox('You edited a transaction.','mEditTrackGD','edit');
 
 	});
 });
