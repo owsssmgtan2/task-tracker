@@ -12,6 +12,54 @@ $(document).on('change','#task_select_qa',function(){
     });
 });
 
+$(document).on('change','#task_select_mit',function(){
+    $.post(globalUrl + '/tracks/subtaskchange/mit', 
+    	{
+    		_token: globalToken,
+    		_method: 'POST',
+    		id: $("#task_select_mit").val()
+
+    	}, function(data, textStatus, xhr) {
+    			removeChild("subtask_select_mit");
+    			removeChild("outcome_select_mit");
+    			removeChild("saletype_select_mit");
+    			$("#subtask_select_mit").append(data);
+
+    });
+});
+
+$(document).on('change','#subtask_select_mit',function(){
+    $.post(globalUrl + '/tracks/outcomechange/mit', 
+    	{
+    		_token: globalToken,
+    		_method: 'POST',
+    		task_id: $("#task_select_mit").val(),
+    		subtask_id: $("#subtask_select_mit").val()
+
+    	}, function(data, textStatus, xhr) {
+    			removeChild("outcome_select_mit");
+    			removeChild("saletype_select_mit");
+    			$("#outcome_select_mit").append(data);
+
+    });
+});
+
+$(document).on('change','#outcome_select_mit',function(){
+    $.post(globalUrl + '/tracks/saletypechange/mit', 
+    	{
+    		_token: globalToken,
+    		_method: 'POST',
+    		task_id: $("#task_select_mit").val(),
+    		subtask_id: $("#subtask_select_mit").val(),
+    		outcome_id: $("#outcome_select_mit").val()
+
+    	}, function(data, textStatus, xhr) {
+    			removeChild("saletype_select_mit");
+    			$("#saletype_select_mit").append(data);
+
+    });
+});
+
 $(document).on('change','#e_task_select_qa',function(){
     $.post(globalUrl + '/tracks/subtaskchange', 
     	{

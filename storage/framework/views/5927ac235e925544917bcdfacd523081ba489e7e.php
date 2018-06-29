@@ -38,6 +38,126 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-info">
+                    <div class="panel-heading"> MIT Tracker</div>
+                    <div class="panel-wrapper collapse in" aria-expanded="true">
+                        <div class="panel-body">
+                            <form id="addTransactionMIT">
+                                <div class="form-body">
+                                    <h3 class="box-title"><?php echo e($name); ?></h3>
+                                    
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Task*</label>
+                                                <select class="form-control" id="task_select_mit" required>
+                                                    <option value="">-- Please Select --</option>
+                                                    <?php $__currentLoopData = $mtasks; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mt): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <option value="<?php echo e($mt->id); ?>"><?php echo e($mt->name); ?></option>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Subtask*</label>
+                                                <select class="form-control" id="subtask_select_mit" required>
+                                                    
+                                                </select>
+                                            </div>
+                                        <!--/span-->
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Outcome*</label>
+                                                <select class="form-control" id="outcome_select_mit" required>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Sale Type*</label>
+                                                <select class="form-control" id="saletype_select_mit">
+                                                    
+                                                </select>
+                                            </div>
+                                        <!--/span-->
+                                        </div>
+                                    </div>
+                                    <!--/row-->
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Order ID*</label>
+                                                <input type="text" class="form-control" id="orderId_text_mit" required="true"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Phone/Ticket*</label>
+                                                <input type="text" class="form-control" id="phone_text_mit" required="true" />
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                    </div>
+                                    <!--/row-->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="control-label">Note</label>
+                                                <textarea id="notes_mit" autofocus="true" rows="4" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                    </div>
+                                    <!--/row-->
+                                </div>
+                                <div class="form-actions pull-right">
+                                    <?php echo FontAwesome::icon('spinner', ['class' => 'fa-spin']); ?>
+                                    <input type="submit" class="btn btn-success" value="Save">
+                                    <button onclick="clearTracker('addTransactionMIT');" type="button" class="btn btn-default">Clear</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <label>Choose Date:</label> <input id="choosedate_mit" type="date" class="btn-choosedate" value="<?php echo date('Y-m-d');?>">
+                                <table class="table table-hover" id="mit_tracks_dtb">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>AGENT NAME</th>
+                                            <th>DATE</th>
+                                            <th>TIME</th>
+                                            <th>TASK</th>
+                                            <th>SUBTASK</th>
+                                            <th>OUTCOME</th>
+                                            <th>SALETYPE</th>
+                                            <th>ORDER ID</th>
+                                            <th>PHONE/TICKET</th>
+                                            <th>NOTES</th>
+                                            <th>MODIFY?</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- MIT Tracker -->
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-info">
                     <div class="panel-heading"> Quality Tracker</div>
                     <div class="panel-wrapper collapse in" aria-expanded="true">
                         <div class="panel-body">
@@ -127,13 +247,13 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div><!-- QA Tracker -->
         </div>
 
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-info">
-                    <div class="panel-heading"> GD Tracker</div>
+                    <div class="panel-heading"> Creative Tracker</div>
                     <div class="panel-wrapper collapse in" aria-expanded="true">
                         <div class="panel-body">
                             <form id="addTransactionGD">
@@ -243,7 +363,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div><!-- GD Tracker -->
         </div>
    
     </div>

@@ -16,6 +16,17 @@ use \Carbon\Carbon;
 
 class TrackerController extends Controller
 {
+    public function mit_tracker_datatable_reload($user_id,$date){
+        $mit_tracks = Tracker::with('task','subtask','outcome','saletype')->where("is_active",1)->where("tracker_type","mit")->where("added_by",$user_id)->whereDate("created_at",$date)->orderBy("created_at","desc")->get();
+
+        foreach($mit_tracks as $mt){
+            $mt->added_by = User::find($mt->added_by)->username;
+        }
+
+        $data = array("data" => $mit_tracks->toArray());
+        file_put_contents("json/mit_tracker.json", json_encode($data));
+    }
+
     public function qa_tracker_datatable_reload($user_id,$date){
         $qa_tracks = Tracker::with('task','subtask')->where("is_active",1)->where("tracker_type","qa")->where("added_by",$user_id)->whereDate("created_at",$date)->orderBy("created_at","desc")->get();
 
@@ -45,6 +56,51 @@ class TrackerController extends Controller
     	$subtasks = SubTask::where("task_id",$request->id)->where("type","qa")->orderBy("name")->get();
 
     	foreach($subtasks as $st){
+            if($st){
+                $list = $list . '<option value="'.$st->id.'">'.$st->name.'</option>';
+            }
+        }
+
+        return $list;
+    }
+
+    public function subtaskchangemit(Request $request){
+
+        $list = '<option value="">-- Please Select --</option>';
+
+        $subtasks = SubTask::where("task_id",$request->id)->where("type","mit")->orderBy("name")->get();
+
+        foreach($subtasks as $st){
+            if($st){
+                $list = $list . '<option value="'.$st->id.'">'.$st->name.'</option>';
+            }
+        }
+
+        return $list;
+    }
+
+    public function outcomechangemit(Request $request){
+
+        $list = '<option value="">-- Please Select --</option>';
+
+        $outcomes = Outcome::where("task_id",$request->task_id)->where("subtask_id",$request->subtask_id)->where("type","mit")->orderBy("name")->get();
+
+        foreach($outcomes as $o){
+            if($o){
+                $list = $list . '<option value="'.$o->id.'">'.$o->name.'</option>';
+            }
+        }
+
+        return $list;
+    }
+
+    public function saletypechangemit(Request $request){
+
+        $list = '<option value="">-- Please Select --</option>';
+
+        $saletypes = SaleType::where("task_id",$request->task_id)->where("subtask_id",$request->subtask_id)->where("outcome_id",$request->outcome_id)->where("type","mit")->orderBy("name")->get();
+
+        foreach($saletypes as $st){
             if($st){
                 $list = $list . '<option value="'.$st->id.'">'.$st->name.'</option>';
             }

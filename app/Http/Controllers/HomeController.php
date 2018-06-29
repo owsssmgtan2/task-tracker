@@ -34,15 +34,17 @@ class HomeController extends Controller
 
         $name = Auth::user()->name . " - " . $this->role_name(Auth::user()->access_level) . " (" . Auth::user()->site . ")";
 
-        app('App\Http\Controllers\TrackerController')->qa_tracker_datatable_reload(Auth::user()->id,Carbon::today()->toDateString());
         app('App\Http\Controllers\TrackerController')->gd_tracker_datatable_reload(Auth::user()->id,Carbon::today()->toDateString());
+        app('App\Http\Controllers\TrackerController')->qa_tracker_datatable_reload(Auth::user()->id,Carbon::today()->toDateString());
+        app('App\Http\Controllers\TrackerController')->mit_tracker_datatable_reload(Auth::user()->id,Carbon::today()->toDateString());
 
+        $mtasks = Task::where("type","mit")->where("is_active",1)->orderBy("name")->get();
         $qtasks = Task::where("type","qa")->where("is_active",1)->orderBy("name")->get();
         $gtasks = Task::where("type","gd")->where("is_active",1)->orderBy("name")->get();
         $imgts = Image::where("type","gd")->where("is_active",1)->orderBy("name")->get();
         $diffts = Difficulty::where("type","gd")->where("is_active",1)->orderBy("name")->get();
 
-        return view('home',compact('qtasks','gtasks','imgts','diffts'))
+        return view('home',compact('mtasks','qtasks','gtasks','imgts','diffts'))
         ->with('title','Dashboard')
         ->with('name',$name);
     }

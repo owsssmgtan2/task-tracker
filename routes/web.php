@@ -77,4 +77,8 @@ Route::patch('/tracks/editqatransaction/{track}', 'TrackerController@editqatrans
 Route::post('/tracks/savegdtransaction', 'TrackerController@savegdtransaction');
 Route::patch('/tracks/editgdtransaction/{track}', 'TrackerController@editgdtransaction');
 
+Route::post('/tracks/subtaskchange/mit', 'TrackerController@subtaskchangemit');
+Route::post('/tracks/outcomechange/mit', 'TrackerController@outcomechangemit');
+Route::post('/tracks/saletypechange/mit', 'TrackerController@saletypechangemit');
+
 

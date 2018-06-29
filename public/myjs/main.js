@@ -1045,6 +1045,98 @@ var gd_tracks_dtb = $("#gd_tracks_dtb").DataTable({
         ordering: true
     });
 
+var mit_tracks_dtb = $("#mit_tracks_dtb").DataTable({ 
+        ajax: globalUrl + "/json/mit_tracker.json",
+        columns: [
+            { "data": "id"},//0
+            { "data": "added_by" },//1
+            { "data": "created_at" },//2
+            { "data": "created_at" },//3
+            { "data": "task" },//4
+            { "data": "subtask" },//5
+            { "data": "outcome" },//6
+            { "data": "saletype" },//7
+            { "data": "order_id" },//8
+            { "data": "ticket_id" },//9
+            { "data": "notes" },//10
+            { 
+              "data": null,
+              "className": "editBtn",
+              "render": function ( data, type, full, meta ) {
+                    if (current_date.toDateString() == new Date().toDateString())
+                    return '<input type="button" class="btn btn-info" value="EDIT">';
+                    else
+                    return '';
+                }
+            },
+            
+        ],
+        columnDefs: [
+            {
+                "targets": [ 0 ],
+                "visible": false,
+                "searchable": false
+            },
+            {
+                "targets": 2,
+                "render": function ( data, type, full, meta ) {
+                    return splitDate(data,0);
+                }
+            },
+            {
+                "targets": 3,
+                "render": function ( data, type, full, meta ) {
+                    return splitDate(data,1);
+                }
+            },
+            {
+                "targets": 4,
+                "render": function ( data, type, full, meta ) {
+                    return data.name;
+                }
+            },
+            {
+                "targets": 5,
+                "render": function ( data, type, full, meta ) {
+                    if(data){
+                        return data.name;  
+                    } else{
+                        return "";
+                    } 
+                     
+                }
+            },
+            {
+                "targets": 6,
+                "render": function ( data, type, full, meta ) {
+                    if(data){
+                        return data.name;  
+                    } else{
+                        return "";
+                    } 
+                     
+                }
+            },
+            {
+                "targets": 7,
+                "render": function ( data, type, full, meta ) {
+                    if(data){
+                        return data.name;  
+                    } else{
+                        return "";
+                    } 
+                     
+                }
+            },
+        ],
+        deferRender: true,
+        bPaginate: true,
+        bLengthChange: true,
+        info: true,
+        order: [],
+        ordering: true
+    });
+
 qa_tracks_dtb.on('click', 'tbody tr td.editBtn', function() {
         
         if (qa_tracks_dtb.cell(this).index().column > 1) {
