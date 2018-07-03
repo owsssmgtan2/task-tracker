@@ -1173,5 +1173,22 @@ gd_tracks_dtb.on('click', 'tbody tr td.editBtn', function() {
         
     });
 
+mit_tracks_dtb.on('click', 'tbody tr td.editBtn', function() {
+        
+        if (mit_tracks_dtb.cell(this).index().column > 1) {
+            let t = mit_tracks_dtb.row(this).data();
+            $("#editTrackGD_edit").val(t.id);
+            $("#e_task_select_gd").val(t.task_id);
+            $("#e_image_select_gd").val(t.image_id);
+            $("#e_difficulty_select_gd").val(t.difficulty_id);
+            $("#e_ticket_text_gd").val(t.ticket_id);
+            $("#e_sku_text_gd").val(t.sku);
+            $("#e_notes_gd").val(t.notes);
+            
+            $("#mEditTrackGD").modal('toggle');
+        }
+        
+    });
+
 
 $(".dataTables_filter").addClass('pull-right');

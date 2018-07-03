@@ -109,6 +109,26 @@ class TrackerController extends Controller
         return $list;
     }
 
+    public function savemittransaction(Request $request){
+        $newTransaction = new Tracker();
+
+        $newTransaction->tracker_type = "mit";
+        $newTransaction->task_id = $request->task_id;
+        $newTransaction->subtask_id = $request->subtask_id;
+        $newTransaction->outcome_id = $request->outcome_id;
+        $newTransaction->saletype_id = $request->saletype_id;
+        $newTransaction->order_id = $request->order_id;
+        $newTransaction->ticket_id = $request->ticket_id;
+        $newTransaction->notes = $request->notes;
+        $newTransaction->is_active = 1;
+        $newTransaction->added_by = Auth::user()->id;
+
+        $newTransaction->save();
+
+        $this->mit_tracker_datatable_reload($newTransaction->added_by,Carbon::today()->toDateString());
+
+    }
+
     public function saveqatransaction(Request $request){
     	$newTransaction = new Tracker();
 
@@ -150,6 +170,8 @@ class TrackerController extends Controller
             $this->qa_tracker_datatable_reload(Auth::user()->id,Carbon::parse($request->newdate)->toDateString());
         }else if($request->type == 'gd'){
             $this->gd_tracker_datatable_reload(Auth::user()->id,Carbon::parse($request->newdate)->toDateString());
+        }else if($request->type == 'mit'){
+            $this->mit_tracker_datatable_reload(Auth::user()->id,Carbon::parse($request->newdate)->toDateString());
         }
         
     }

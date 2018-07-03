@@ -102,6 +102,20 @@ $(document).on('change','#choosedate_gd',function(){
     });
 });
 
+$(document).on('change','#choosedate_mit',function(){
+	current_date = new Date($("#choosedate_mit").val());
+    $.post(globalUrl + '/tracks/changedate', 
+    	{
+    		_token: globalToken,
+    		_method: 'POST',
+    		newdate: $("#choosedate_mit").val(),
+    		type: 'mit'
+
+    	}, function(data, textStatus, xhr) {
+    		refresh_datatable("mit_tracks_dtb");
+    });
+});
+
 $('#addTransactionQA').submit(function(e) {
 
 	e.preventDefault();
@@ -135,8 +149,6 @@ $('#addTransactionQA').submit(function(e) {
 
 $('#addTransactionGD').submit(function(e) {
 
-	e.preventDefault();
-
 	showspinner("addTransactionGD");
 	$.post(globalUrl + '/tracks/savegdtransaction', 
 		{
@@ -152,6 +164,39 @@ $('#addTransactionGD').submit(function(e) {
 		}, function(data, textStatus, xhr) {
 			refresh_datatable("gd_tracks_dtb");
 			hidespinner("addTransactionGD");
+			show_alertbox('You added a new transaction.','','add');
+
+	});
+});
+
+$('#addTransactionMIT').submit(function(e) {
+
+	e.preventDefault();
+
+	let st = "";
+
+	if($("#saletype_select_mit").val()){
+		st = $("#saletype_select_mit").val();
+	}else{
+		st = 0;
+	}
+
+	showspinner("addTransactionMIT");
+	$.post(globalUrl + '/tracks/savemittransaction', 
+		{
+			_token: globalToken,
+			_method: 'POST',
+			task_id: $("#task_select_mit").val(),
+			subtask_id: $("#subtask_select_mit").val(),
+			outcome_id: $("#outcome_select_mit").val(),
+			saletype_id: st,
+			order_id: $("#orderId_text_mit").val(),
+			ticket_id: $("#phone_text_mit").val(),
+			notes: $("#notes_mit").val()
+
+		}, function(data, textStatus, xhr) {
+			refresh_datatable("mit_tracks_dtb");
+			hidespinner("addTransactionMIT");
 			show_alertbox('You added a new transaction.','','add');
 
 	});
