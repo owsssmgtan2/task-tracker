@@ -17,15 +17,6 @@
                 <a href="<?php echo e(url('/logs')); ?>" class="waves-effect"><i class="fa fa-book fa-fw" aria-hidden="true"></i>Transaction Logs</a>
             </li>
             <li>
-                <a href="map-google.html" class="waves-effect"><i class="fa fa-globe fa-fw" aria-hidden="true"></i>Google Map</a>
-            </li>
-            <li>
-                <a href="blank.html" class="waves-effect"><i class="fa fa-columns fa-fw" aria-hidden="true"></i>Blank Page</a>
-            </li>
-            <li>
-                <a href="404.html" class="waves-effect"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>Error 404</a>
-            </li>
-            <li>
                 <a href="<?php echo e(url('/logout')); ?>" class="waves-effect"><i class="fa fa-power-off fa-fw" aria-hidden="true"></i>Logout</a>
             </li>
 
