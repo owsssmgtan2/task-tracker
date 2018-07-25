@@ -17,4 +17,8 @@ class Outcome extends Model
     public function saletypes (){
         return $this->hasMany(SaleType::class, "outcome_id", "id");
     }
+
+    public function trackers (){
+        return $this->hasMany(Tracker::class, "outcome_id", "id");
+    }
 }

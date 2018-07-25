@@ -19,4 +19,8 @@ class SubTask extends Model
     public function saletypes (){
         return $this->hasMany(SaleType::class, "subtask_id", "id");
     }
+
+    public function trackers (){
+        return $this->hasMany(Tracker::class, "subtask_id", "id");
+    }
 }

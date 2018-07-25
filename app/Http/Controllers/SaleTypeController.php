@@ -156,7 +156,7 @@ class SaleTypeController extends Controller
                 $newLog = new Log;
                 $newLog->tracker_type = "mit";
                 $newLog->activity_type = "CREATE";
-                $newLog->log_details = "Created a new saletype from the task/subtask <b>".$newSaleType->task->name."/".$newSaleType->subtask->name."] with a name of <b>".$newSaleType->name."] and with a description of <b>".$newSaleType->description."</b>.";
+                $newLog->log_details = "Created a new saletype from the task/subtask <b>".$newSaleType->task->name."/".$newSaleType->subtask->name."</b> with a name of <b>".$newSaleType->name."</b> and with a description of <b>".$newSaleType->description."</b>.";
                 $newLog->name = $ss->name;
                 $newLog->description = $ss->description;
                 $newLog->added_by = Auth::user()->id;

@@ -888,5 +888,307 @@ var log_dtb = $("#logs_dtb").DataTable({
         ordering: true
     });
 
+var qa_tracks_dtb = $("#qa_tracks_dtb").DataTable({ 
+        ajax: globalUrl + "/json/qa_tracker.json",
+        columns: [
+            { "data": "id"},//0
+            { "data": "added_by" },//1
+            { "data": "created_at" },//2
+            { "data": "created_at" },//3
+            { "data": "task" },//4
+            { "data": "subtask" },//5
+            { "data": "trans_stamp" },//6
+            { "data": "notes" },//7
+            { 
+              "data": null,
+              "className": "editBtn",
+              "render": function ( data, type, full, meta ) {
+                    if (current_date.toDateString() == new Date().toDateString())
+                    return '<input type="button" class="btn btn-info" value="EDIT">';
+                    else
+                    return '';
+                }
+            },
+            
+        ],
+        columnDefs: [
+            {
+                "targets": [ 0 ],
+                "visible": false,
+                "searchable": false
+            },
+            {
+                "targets": 2,
+                "render": function ( data, type, full, meta ) {
+                    return splitDate(data,0);
+                }
+            },
+            {
+                "targets": 3,
+                "render": function ( data, type, full, meta ) {
+                    return splitDate(data,1);
+                }
+            },
+            {
+                "targets": 4,
+                "render": function ( data, type, full, meta ) {
+                    return data.name;
+                }
+            },
+            {
+                "targets": 5,
+                "render": function ( data, type, full, meta ) {
+                    if(data){
+                        return data.name;  
+                    } else{
+                        return "";
+                    } 
+                     
+                }
+            },
+            {
+                "targets": 6,
+                "render": function ( data, type, full, meta ) {
+                    if(data == "Start"){
+                        return '<span class="label label-success label-rouded">Start</span>';
+                    }else if(data == "End"){
+                        return '<span class="label label-primary label-rouded">End</span>';
+                    }
+                }
+            },
+        ],
+        deferRender: true,
+        bPaginate: true,
+        bLengthChange: true,
+        info: true,
+        order: [],
+        ordering: true
+    });
+
+var gd_tracks_dtb = $("#gd_tracks_dtb").DataTable({ 
+        ajax: globalUrl + "/json/gd_tracker.json",
+        columns: [
+            { "data": "id"},//0
+            { "data": "added_by" },//1
+            { "data": "created_at" },//2
+            { "data": "created_at" },//3
+            { "data": "task" },//4
+            { "data": "image" },//5
+            { "data": "difficulty" },//6
+            { "data": "ticket_id" },//6
+            { "data": "sku" },//6
+            { "data": "notes" },//7
+            { 
+              "data": null,
+              "className": "editBtn",
+              "render": function ( data, type, full, meta ) {
+                    if (current_date.toDateString() == new Date().toDateString())
+                    return '<input type="button" class="btn btn-info" value="EDIT">';
+                    else
+                    return '';
+                }
+            },
+            
+        ],
+        columnDefs: [
+            {
+                "targets": [ 0 ],
+                "visible": false,
+                "searchable": false
+            },
+            {
+                "targets": 2,
+                "render": function ( data, type, full, meta ) {
+                    return splitDate(data,0);
+                }
+            },
+            {
+                "targets": 3,
+                "render": function ( data, type, full, meta ) {
+                    return splitDate(data,1);
+                }
+            },
+            {
+                "targets": 4,
+                "render": function ( data, type, full, meta ) {
+                    return data.name;
+                }
+            },
+            {
+                "targets": 5,
+                "render": function ( data, type, full, meta ) {
+                    if(data){
+                        return data.name;  
+                    } else{
+                        return "";
+                    } 
+                     
+                }
+            },
+            {
+                "targets": 6,
+                "render": function ( data, type, full, meta ) {
+                    if(data){
+                        return data.name;  
+                    } else{
+                        return "";
+                    } 
+                     
+                }
+            },
+        ],
+        deferRender: true,
+        bPaginate: true,
+        bLengthChange: true,
+        info: true,
+        order: [],
+        ordering: true
+    });
+
+var mit_tracks_dtb = $("#mit_tracks_dtb").DataTable({ 
+        ajax: globalUrl + "/json/mit_tracker.json",
+        columns: [
+            { "data": "id"},//0
+            { "data": "added_by" },//1
+            { "data": "created_at" },//2
+            { "data": "created_at" },//3
+            { "data": "task" },//4
+            { "data": "subtask" },//5
+            { "data": "outcome" },//6
+            { "data": "saletype" },//7
+            { "data": "order_id" },//8
+            { "data": "ticket_id" },//9
+            { "data": "notes" },//10
+            { 
+              "data": null,
+              "className": "editBtn",
+              "render": function ( data, type, full, meta ) {
+                    if (current_date.toDateString() == new Date().toDateString())
+                    return '<input type="button" class="btn btn-info" value="EDIT">';
+                    else
+                    return '';
+                }
+            },
+            
+        ],
+        columnDefs: [
+            {
+                "targets": [ 0 ],
+                "visible": false,
+                "searchable": false
+            },
+            {
+                "targets": 2,
+                "render": function ( data, type, full, meta ) {
+                    return splitDate(data,0);
+                }
+            },
+            {
+                "targets": 3,
+                "render": function ( data, type, full, meta ) {
+                    return splitDate(data,1);
+                }
+            },
+            {
+                "targets": 4,
+                "render": function ( data, type, full, meta ) {
+                    return data.name;
+                }
+            },
+            {
+                "targets": 5,
+                "render": function ( data, type, full, meta ) {
+                    if(data){
+                        return data.name;  
+                    } else{
+                        return "";
+                    } 
+                     
+                }
+            },
+            {
+                "targets": 6,
+                "render": function ( data, type, full, meta ) {
+                    if(data){
+                        return data.name;  
+                    } else{
+                        return "";
+                    } 
+                     
+                }
+            },
+            {
+                "targets": 7,
+                "render": function ( data, type, full, meta ) {
+                    if(data){
+                        return data.name;  
+                    } else{
+                        return "";
+                    } 
+                     
+                }
+            },
+        ],
+        deferRender: true,
+        bPaginate: true,
+        bLengthChange: true,
+        info: true,
+        order: [],
+        ordering: true
+    });
+
+qa_tracks_dtb.on('click', 'tbody tr td.editBtn', function() {
+        
+        if (qa_tracks_dtb.cell(this).index().column > 1) {
+            let t = qa_tracks_dtb.row(this).data();
+            $("#editTrackQA_edit").val(t.id);
+            $("#e_task_select_qa").val(t.task_id).change();
+            $("#e_stamp_qa").val(t.trans_stamp);
+            $("#e_notes_qa").val(t.notes);
+
+            setTimeout(function(){
+                $("#e_subtask_select_qa").val(t.subtask_id);
+            }, 1500);
+
+            
+            $("#mEditTrackQA").modal('toggle');
+        }
+        
+    });
+
+gd_tracks_dtb.on('click', 'tbody tr td.editBtn', function() {
+        
+        if (gd_tracks_dtb.cell(this).index().column > 1) {
+            let t = gd_tracks_dtb.row(this).data();
+            $("#editTrackGD_edit").val(t.id);
+            $("#e_task_select_gd").val(t.task_id);
+            $("#e_image_select_gd").val(t.image_id);
+            $("#e_difficulty_select_gd").val(t.difficulty_id);
+            $("#e_ticket_text_gd").val(t.ticket_id);
+            $("#e_sku_text_gd").val(t.sku);
+            $("#e_notes_gd").val(t.notes);
+            
+            $("#mEditTrackGD").modal('toggle');
+        }
+        
+    });
+
+mit_tracks_dtb.on('click', 'tbody tr td.editBtn', function() {
+        
+        if (mit_tracks_dtb.cell(this).index().column > 1) {
+            let t = mit_tracks_dtb.row(this).data();
+            $("#editTrackGD_edit").val(t.id);
+            $("#e_task_select_gd").val(t.task_id);
+            $("#e_image_select_gd").val(t.image_id);
+            $("#e_difficulty_select_gd").val(t.difficulty_id);
+            $("#e_ticket_text_gd").val(t.ticket_id);
+            $("#e_sku_text_gd").val(t.sku);
+            $("#e_notes_gd").val(t.notes);
+            
+            $("#mEditTrackGD").modal('toggle');
+        }
+        
+    });
+
 
 $(".dataTables_filter").addClass('pull-right');

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Task;
 use App\SubTask;
+use App\Outcome;
+use App\SaleType;
 use App\User;
 use App\Log;
 
@@ -67,6 +69,8 @@ class TaskController extends Controller
         app('App\Http\Controllers\SaleTypeController')->mit_saletypes_datatable_reload(0,0,0);
         app('App\Http\Controllers\ImageController')->gd_images_datatable_reload();
         app('App\Http\Controllers\DifficultyController')->gd_difficulties_datatable_reload();
+
+        $this->qa_summary();
 
         return view('tasks.index')
         ->with('title','Transactions');
@@ -150,5 +154,74 @@ class TaskController extends Controller
         $this->qa_tasks_datatable_reload();
         $this->gd_tasks_datatable_reload();
 
+    }
+
+    public function qa_summary()
+    {
+        $list = "";
+
+        $tasks = Task::orderBy("name")->where("is_active",1)->where("type","qa")->get();
+
+        foreach($tasks as $t){
+            $subtasks = SubTask::orderBy("name")->where("task_id",$t->id)->where("is_active",1)->where("type","qa")->get();
+            $subtasks_count = SubTask::orderBy("name")->where("task_id",$t->id)->where("is_active",1)->where("type","qa")->count();
+
+            foreach($subtasks as $st)
+            {
+                $list = $list . "<tr><td>".$t->name."</td><td>".$st->name."</td></tr>";
+            }
+
+            if($subtasks_count == 0){
+                $list = $list . "<tr><td>".$t->name."</td><td></td></tr>";
+            } 
+        }
+
+        return $list;
+
+        
+    }
+
+    public function mit_summary()
+    {
+        $list = "";
+
+        $tasks = Task::orderBy("name")->where("is_active",1)->where("type","mit")->get();
+
+        foreach($tasks as $t){
+            $subtasks = SubTask::orderBy("name")->where("task_id",$t->id)->where("is_active",1)->where("type","mit")->get();
+            $subtasks_count = SubTask::orderBy("name")->where("task_id",$t->id)->where("is_active",1)->where("type","mit")->count();
+
+            foreach($subtasks as $st)
+            {
+                $outcomes = Outcome::orderBy("name")->where("task_id",$t->id)->where("subtask_id",$st->id)->where("is_active",1)->where("type","mit")->get();
+                $outcomes_count = Outcome::orderBy("name")->where("task_id",$t->id)->where("subtask_id",$st->id)->where("is_active",1)->where("type","mit")->count();
+
+                foreach($outcomes as $o){
+                    $saletypes = SaleType::orderBy("name")->where("task_id",$t->id)->where("subtask_id",$st->id)->where("outcome_id",$o->id)->where("is_active",1)->where("type","mit")->get();
+                    $saletypes_count = SaleType::orderBy("name")->where("task_id",$t->id)->where("subtask_id",$st->id)->where("outcome_id",$o->id)->where("is_active",1)->where("type","mit")->count();
+
+                    $sts = "";
+
+                    foreach($saletypes as $stss){
+                        $sts = $sts . $stss->name . ", ";
+                    }
+
+                    $list = $list . "<tr><td>".$t->name."</td><td>".$st->name."</td><td>".$o->name."</td><td>".$sts."</td></tr>";
+
+                }
+
+                if($outcomes_count == 0){
+                $list = $list . "<tr><td>".$t->name."</td><td>".$st->name."</td><td></td><td></td></tr>";
+                }
+            }
+
+            if($subtasks_count == 0){
+                $list = $list . "<tr><td>".$t->name."</td><td></td><td></td><td></td></tr>";
+            } 
+        }
+
+        return $list;
+
+        
     }
 }

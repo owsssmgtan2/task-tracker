@@ -1,6 +1,6 @@
 <?php
 
-
+date_default_timezone_set("Australia/Melbourne");
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,6 +37,8 @@ Route::get('/transactions', 'TaskController@index');
 Route::post('/tasks/create', 'TaskController@create');
 Route::patch('/tasks/update/{task}', 'TaskController@update');
 Route::patch('/tasks/delete/{task}', 'TaskController@delete');
+Route::post('/tasks/qasummary', 'TaskController@qa_summary');
+Route::post('/tasks/mitsummary', 'TaskController@mit_summary');
 
 Route::post('/subtasks/load', 'SubTaskController@load');
 Route::post('/subtasks/create', 'SubTaskController@create');
@@ -66,5 +68,18 @@ Route::post('/saletypes/show', 'SaleTypeController@show');
 Route::post('/saletypes/paste', 'SaleTypeController@paste');
 
 Route::get('/logs', 'LogController@index');
+
+Route::post('/tracks/subtaskchange', 'TrackerController@subtaskchange');
+Route::post('/tracks/saveqatransaction', 'TrackerController@saveqatransaction');
+Route::post('/tracks/changedate', 'TrackerController@changedate');
+Route::patch('/tracks/editqatransaction/{track}', 'TrackerController@editqatransaction');
+
+Route::post('/tracks/savegdtransaction', 'TrackerController@savegdtransaction');
+Route::patch('/tracks/editgdtransaction/{track}', 'TrackerController@editgdtransaction');
+
+Route::post('/tracks/subtaskchange/mit', 'TrackerController@subtaskchangemit');
+Route::post('/tracks/outcomechange/mit', 'TrackerController@outcomechangemit');
+Route::post('/tracks/saletypechange/mit', 'TrackerController@saletypechangemit');
+Route::post('/tracks/savemittransaction', 'TrackerController@savemittransaction');
 
 

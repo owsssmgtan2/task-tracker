@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('main-content')
+@section('main-content') <!-- 3 boxes at the top -->
         <div class="row">
             <div class="col-lg-4 col-sm-6 col-xs-12">
                 <div class="white-box analytics-info">
@@ -36,207 +36,341 @@
                 </div>
             </div>
         </div>
-        <!--/.row -->
-        <!--row -->
-        <!-- /.row -->
+
         <div class="row">
-            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                <div class="white-box">
-                    <h3 class="box-title">Products Yearly Sales</h3>
-                    <ul class="list-inline text-right">
-                        <li>
-                            <h5><i class="fa fa-circle m-r-5 text-info"></i>Mac</h5> </li>
-                        <li>
-                            <h5><i class="fa fa-circle m-r-5 text-inverse"></i>Windows</h5> </li>
-                    </ul>
-                    <div id="ct-visits" style="height: 405px;"></div>
+            <div class="col-md-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading"> MIT Tracker</div>
+                    <div class="panel-wrapper collapse in" aria-expanded="true">
+                        <div class="panel-body">
+                            <form id="addTransactionMIT">
+                                <div class="form-body">
+                                    <h3 class="box-title">{{ $name }}</h3>
+                                    
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Task*</label>
+                                                <select class="form-control" id="task_select_mit" required>
+                                                    <option value="">-- Please Select --</option>
+                                                    @foreach($mtasks as $mt)
+                                                        <option value="{{$mt->id}}">{{$mt->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Subtask*</label>
+                                                <select class="form-control" id="subtask_select_mit" required>
+                                                    
+                                                </select>
+                                            </div>
+                                        <!--/span-->
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Outcome*</label>
+                                                <select class="form-control" id="outcome_select_mit" required>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Sale Type*</label>
+                                                <select class="form-control" id="saletype_select_mit">
+                                                    
+                                                </select>
+                                            </div>
+                                        <!--/span-->
+                                        </div>
+                                    </div>
+                                    <!--/row-->
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Order ID*</label>
+                                                <input type="text" class="form-control" id="orderId_text_mit" required="true"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Phone/Ticket*</label>
+                                                <input type="text" class="form-control" id="phone_text_mit" required="true" />
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                    </div>
+                                    <!--/row-->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="control-label">Note</label>
+                                                <textarea id="notes_mit" autofocus="true" rows="4" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                    </div>
+                                    <!--/row-->
+                                </div>
+                                <div class="form-actions pull-right">
+                                    @fa('spinner', ['class' => 'fa-spin'])
+                                    <input type="submit" class="btn btn-success" value="Save">
+                                    <button onclick="clearTracker('addTransactionMIT');" type="button" class="btn btn-default">Clear</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <label>Choose Date:</label> <input id="choosedate_mit" type="date" class="btn-choosedate" value="<?php echo date('Y-m-d');?>">
+                                <table class="table table-hover" id="mit_tracks_dtb">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>AGENT NAME</th>
+                                            <th>DATE</th>
+                                            <th>TIME</th>
+                                            <th>TASK</th>
+                                            <th>SUBTASK</th>
+                                            <th>OUTCOME</th>
+                                            <th>SALETYPE</th>
+                                            <th>ORDER ID</th>
+                                            <th>PHONE/TICKET</th>
+                                            <th>NOTES</th>
+                                            <th>MODIFY?</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </div><!-- MIT Tracker -->
         </div>
-        <!-- ============================================================== -->
-        <!-- table -->
-        <!-- ============================================================== -->
+
         <div class="row">
-            <div class="col-md-12 col-lg-12 col-sm-12">
-                <div class="white-box">
-                    <div class="col-md-3 col-sm-4 col-xs-6 pull-right">
-                        <select class="form-control pull-right row b-none">
-                            <option>March 2017</option>
-                            <option>April 2017</option>
-                            <option>May 2017</option>
-                            <option>June 2017</option>
-                            <option>July 2017</option>
-                        </select>
-                    </div>
-                    <h3 class="box-title">Recent sales</h3>
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>NAME</th>
-                                    <th>STATUS</th>
-                                    <th>DATE</th>
-                                    <th>PRICE</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td class="txt-oflo">Elite admin</td>
-                                    <td>SALE</td>
-                                    <td class="txt-oflo">April 18, 2017</td>
-                                    <td><span class="text-success">$24</span></td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td class="txt-oflo">Real Homes WP Theme</td>
-                                    <td>EXTENDED</td>
-                                    <td class="txt-oflo">April 19, 2017</td>
-                                    <td><span class="text-info">$1250</span></td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td class="txt-oflo">Ample Admin</td>
-                                    <td>EXTENDED</td>
-                                    <td class="txt-oflo">April 19, 2017</td>
-                                    <td><span class="text-info">$1250</span></td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td class="txt-oflo">Medical Pro WP Theme</td>
-                                    <td>TAX</td>
-                                    <td class="txt-oflo">April 20, 2017</td>
-                                    <td><span class="text-danger">-$24</span></td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td class="txt-oflo">Hosting press html</td>
-                                    <td>SALE</td>
-                                    <td class="txt-oflo">April 21, 2017</td>
-                                    <td><span class="text-success">$24</span></td>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td class="txt-oflo">Digital Agency PSD</td>
-                                    <td>SALE</td>
-                                    <td class="txt-oflo">April 23, 2017</td>
-                                    <td><span class="text-danger">-$14</span></td>
-                                </tr>
-                                <tr>
-                                    <td>7</td>
-                                    <td class="txt-oflo">Helping Hands WP Theme</td>
-                                    <td>MEMBER</td>
-                                    <td class="txt-oflo">April 22, 2017</td>
-                                    <td><span class="text-success">$64</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
+            <div class="col-md-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading"> Quality Tracker</div>
+                    <div class="panel-wrapper collapse in" aria-expanded="true">
+                        <div class="panel-body">
+                            <form id="addTransactionQA">
+                                <div class="form-body">
+                                    <h3 class="box-title">{{ $name }}</h3>
+                                    
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Task*</label>
+                                                <select class="form-control" id="task_select_qa" required>
+                                                    <option value="">-- Please Select --</option>
+                                                    @foreach($qtasks as $qt)
+                                                        <option value="{{$qt->id}}">{{$qt->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Subtask*</label>
+                                                <select class="form-control" id="subtask_select_qa">
+                                                    
+                                                </select>
+                                            </div>
+                                        <!--/span-->
+                                        </div>
+                                    </div>
+                                    <!--/row-->
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Stamp*</label>
+                                                <select class="form-control" id="stamp_qa">
+                                                    <option value="Start">Start</option>
+                                                    <option value="End">End</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                    </div>
+                                    <!--/row-->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="control-label">Note</label>
+                                                <textarea id="notes_qa" autofocus="true" rows="4" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                    </div>
+                                    <!--/row-->
+                                </div>
+                                <div class="form-actions pull-right">
+                                    @fa('spinner', ['class' => 'fa-spin'])
+                                    <input type="submit" class="btn btn-success" value="Save">
+                                    <button onclick="clearTracker('addTransactionQA');" type="button" class="btn btn-default">Clear</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <label>Choose Date:</label> <input id="choosedate" type="date" class="btn-choosedate" value="<?php echo date('Y-m-d');?>">
+                                <table class="table table-hover" id="qa_tracks_dtb">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>AGENT NAME</th>
+                                            <th>DATE</th>
+                                            <th>TIME</th>
+                                            <th>TASK</th>
+                                            <th>SUBTASK</th>
+                                            <th>STAMP</th>
+                                            <th>NOTES</th>
+                                            <th>MODIFY?</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </div><!-- QA Tracker -->
         </div>
-        <!-- ============================================================== -->
-        <!-- chat-listing & recent comments -->
-        <!-- ============================================================== -->
+
         <div class="row">
-            <!-- .col -->
-            <div class="col-md-12 col-lg-8 col-sm-12">
-                <div class="white-box">
-                    <h3 class="box-title">Recent Comments</h3>
-                    <div class="comment-center p-t-10">
-                        <div class="comment-body">
-                            <div class="user-img"> <img src="../plugins/images/users/pawandeep.jpg" alt="user" class="img-circle">
-                            </div>
-                            <div class="mail-contnet">
-                                <h5>Pavan kumar</h5><span class="time">10:20 AM   20  may 2016</span>
-                                <br/><span class="mail-desc">Donec ac condimentum massa. Etiam pellentesque pretium lacus. Phasellus ultricies dictum suscipit. Aenean commodo dui pellentesque molestie feugiat. Aenean commodo dui pellentesque molestie feugiat</span> <a href="javacript:void(0)" class="btn btn btn-rounded btn-default btn-outline m-r-5"><i class="ti-check text-success m-r-5"></i>Approve</a><a href="javacript:void(0)" class="btn-rounded btn btn-default btn-outline"><i class="ti-close text-danger m-r-5"></i> Reject</a>
-                            </div>
+            <div class="col-md-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading"> Creative Tracker</div>
+                    <div class="panel-wrapper collapse in" aria-expanded="true">
+                        <div class="panel-body">
+                            <form id="addTransactionGD">
+                                <div class="form-body">
+                                    <h3 class="box-title">{{ $name }}</h3>
+                                    
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Task*</label>
+                                                <select class="form-control" id="task_select_gd" required>
+                                                    <option value="">-- Please Select --</option>
+                                                    @foreach($gtasks as $gt)
+                                                        <option value="{{$gt->id}}">{{$gt->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/row-->
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Image*</label>
+                                                <select class="form-control" id="image_select_gd" required="true">
+                                                    <option value="">-- Please Select --</option>
+                                                    @foreach($imgts as $imgt)
+                                                        <option value="{{$imgt->id}}">{{$imgt->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Difficulty*</label>
+                                                <select class="form-control" id="difficulty_select_gd" required="true">
+                                                    <option value="">-- Please Select --</option>
+                                                    @foreach($diffts as $difft)
+                                                        <option value="{{$difft->id}}">{{$difft->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                    </div>
+                                    <!--/row-->
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Ticket #*</label>
+                                                <input type="text" class="form-control" id="ticket_text_gd" required="true"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">SKU #*</label>
+                                                <input type="text" class="form-control" id="sku_text_gd" required="true" />
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                    </div>
+                                    <!--/row-->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="control-label">Note</label>
+                                                <textarea id="notes_gd" autofocus="true" rows="4" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                    </div>
+                                    <!--/row-->
+                                </div>
+                                <div class="form-actions pull-right">
+                                    @fa('spinner', ['class' => 'fa-spin'])
+                                    <input type="submit" class="btn btn-success" value="Save">
+                                    <button onclick="clearTracker('addTransactionQA');" type="button" class="btn btn-default">Clear</button>
+                                </div>
+                            </form>
                         </div>
-                        <div class="comment-body">
-                            <div class="user-img"> <img src="../plugins/images/users/sonu.jpg" alt="user" class="img-circle">
-                            </div>
-                            <div class="mail-contnet">
-                                <h5>Sonu Nigam</h5><span class="time">10:20 AM   20  may 2016</span>
-                                <br/><span class="mail-desc">Donec ac condimentum massa. Etiam pellentesque pretium lacus. Phasellus ultricies dictum suscipit. Aenean commodo dui pellentesque molestie feugiat. Aenean commodo dui pellentesque molestie feugiat</span>
-                            </div>
-                        </div>
-                        <div class="comment-body b-none">
-                            <div class="user-img"> <img src="../plugins/images/users/arijit.jpg" alt="user" class="img-circle">
-                            </div>
-                            <div class="mail-contnet">
-                                <h5>Arijit singh</h5><span class="time">10:20 AM   20  may 2016</span>
-                                <br/><span class="mail-desc">Donec ac condimentum massa. Etiam pellentesque pretium lacus. Phasellus ultricies dictum suscipit. Aenean commodo dui pellentesque molestie feugiat. Aenean commodo dui pellentesque molestie feugiat</span>
+
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <label>Choose Date:</label> <input id="choosedate_gd" type="date" class="btn-choosedate" value="<?php echo date('Y-m-d');?>">
+                                <table class="table table-hover" id="gd_tracks_dtb">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>AGENT NAME</th>
+                                            <th>DATE</th>
+                                            <th>TIME</th>
+                                            <th>TASK</th>
+                                            <th>IMAGE</th>
+                                            <th>DIFFICULTY</th>
+                                            <th>TICKET #</th>
+                                            <th>SKU #</th>
+                                            <th>NOTES</th>
+                                            <th>MODIFY?</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="panel">
-                    <div class="sk-chat-widgets">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                CHAT LISTING
-                            </div>
-                            <div class="panel-body">
-                                <ul class="chatonline">
-                                    <li>
-                                        <div class="call-chat">
-                                            <button class="btn btn-success btn-circle btn-lg" type="button"><i class="fa fa-phone"></i></button>
-                                            <button class="btn btn-info btn-circle btn-lg" type="button"><i class="fa fa-comments-o"></i></button>
-                                        </div>
-                                        <a href="javascript:void(0)"><img src="../plugins/images/users/varun.jpg" alt="user-img" class="img-circle"> <span>Varun Dhavan <small class="text-success">online</small></span></a>
-                                    </li>
-                                    <li>
-                                        <div class="call-chat">
-                                            <button class="btn btn-success btn-circle btn-lg" type="button"><i class="fa fa-phone"></i></button>
-                                            <button class="btn btn-info btn-circle btn-lg" type="button"><i class="fa fa-comments-o"></i></button>
-                                        </div>
-                                        <a href="javascript:void(0)"><img src="../plugins/images/users/genu.jpg" alt="user-img" class="img-circle"> <span>Genelia Deshmukh <small class="text-warning">Away</small></span></a>
-                                    </li>
-                                    <li>
-                                        <div class="call-chat">
-                                            <button class="btn btn-success btn-circle btn-lg" type="button"><i class="fa fa-phone"></i></button>
-                                            <button class="btn btn-info btn-circle btn-lg" type="button"><i class="fa fa-comments-o"></i></button>
-                                        </div>
-                                        <a href="javascript:void(0)"><img src="../plugins/images/users/ritesh.jpg" alt="user-img" class="img-circle"> <span>Ritesh Deshmukh <small class="text-danger">Busy</small></span></a>
-                                    </li>
-                                    <li>
-                                        <div class="call-chat">
-                                            <button class="btn btn-success btn-circle btn-lg" type="button"><i class="fa fa-phone"></i></button>
-                                            <button class="btn btn-info btn-circle btn-lg" type="button"><i class="fa fa-comments-o"></i></button>
-                                        </div>
-                                        <a href="javascript:void(0)"><img src="../plugins/images/users/arijit.jpg" alt="user-img" class="img-circle"> <span>Arijit Sinh <small class="text-muted">Offline</small></span></a>
-                                    </li>
-                                    <li>
-                                        <div class="call-chat">
-                                            <button class="btn btn-success btn-circle btn-lg" type="button"><i class="fa fa-phone"></i></button>
-                                            <button class="btn btn-info btn-circle btn-lg" type="button"><i class="fa fa-comments-o"></i></button>
-                                        </div>
-                                        <a href="javascript:void(0)"><img src="../plugins/images/users/govinda.jpg" alt="user-img" class="img-circle"> <span>Govinda Star <small class="text-success">online</small></span></a>
-                                    </li>
-                                    <li>
-                                        <div class="call-chat">
-                                            <button class="btn btn-success btn-circle btn-lg" type="button"><i class="fa fa-phone"></i></button>
-                                            <button class="btn btn-info btn-circle btn-lg" type="button"><i class="fa fa-comments-o"></i></button>
-                                        </div>
-                                        <a href="javascript:void(0)"><img src="../plugins/images/users/hritik.jpg" alt="user-img" class="img-circle"> <span>John Abraham<small class="text-success">online</small></span></a>
-                                    </li>
-                                    <li>
-                                        <div class="call-chat">
-                                            <button class="btn btn-success btn-circle btn-lg" type="button"><i class="fa fa-phone"></i></button>
-                                            <button class="btn btn-info btn-circle btn-lg" type="button"><i class="fa fa-comments-o"></i></button>
-                                        </div>
-                                        <a href="javascript:void(0)"><img src="../plugins/images/users/varun.jpg" alt="user-img" class="img-circle"> <span>Varun Dhavan <small class="text-success">online</small></span></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /.col -->
+            </div><!-- GD Tracker -->
         </div>
+   
     </div>
+
+@include ('trackers.modal.edittrackqa')
+@include ('trackers.modal.edittrackgd')
+
 @endsection
