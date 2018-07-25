@@ -71,7 +71,7 @@ class SaleTypeController extends Controller
         $newLog = new Log;
         $newLog->tracker_type = $saletype->type;
         $newLog->activity_type = "MODIFY";
-        $newLog->log_details = "Updated a sale type from the task/subtask/outcome <b>".$saletype->task->name."/".$saletype->subtask->name."/".$saletype->outcome->name."] that is updated from a name of <b>".$saletype->name."</b> to <b>".$request->name."</b> and from a description of <b>".$saletype->description."</b> to <b>".$request->description."</b>.";
+        $newLog->log_details = "Updated a sale type from the task/subtask/outcome <b>".$saletype->task->name."/".$saletype->subtask->name."/".$saletype->outcome->name."</b> that is updated from a name of <b>".$saletype->name."</b> to <b>".$request->name."</b> and from a description of <b>".$saletype->description."</b> to <b>".$request->description."</b>.";
         $newLog->name = $request->name;
         $newLog->description = $request->description;
         $newLog->added_by = Auth::user()->id;
@@ -156,7 +156,7 @@ class SaleTypeController extends Controller
                 $newLog = new Log;
                 $newLog->tracker_type = "mit";
                 $newLog->activity_type = "CREATE";
-                $newLog->log_details = "Created a new saletype from the task/subtask <b>".$newSaleType->task->name."/".$newSaleType->subtask->name."] with a name of <b>".$newSaleType->name."] and with a description of <b>".$newSaleType->description."</b>.";
+                $newLog->log_details = "Created a new saletype from the task/subtask <b>".$newSaleType->task->name."/".$newSaleType->subtask->name."</b> with a name of <b>".$newSaleType->name."</b> and with a description of <b>".$newSaleType->description."</b>.";
                 $newLog->name = $ss->name;
                 $newLog->description = $ss->description;
                 $newLog->added_by = Auth::user()->id;

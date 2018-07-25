@@ -67,3 +67,16 @@ $('#deleteUser').submit(function(e) {
 
 	});
 });
+
+$(document).on('change','#filter_users',function(){
+	$.post(globalUrl + '/users/filter', 
+		{
+			_token: globalToken,
+			_method: 'POST',
+			access_level: $("#filter_users").val()
+
+		}, function(data, textStatus, xhr) {
+				refresh_datatable("users_dtb");
+	});
+    
+});

@@ -17,7 +17,7 @@ class CreateTableLogs extends Migration
             $table->increments('id');
             $table->string('tracker_type');
             $table->string('activity_type');
-            $table->string('log_details');
+            $table->text('log_details');
             $table->string('name')->nullable();
             $table->string('description')->nullable();            
             $table->integer('is_active')->default(1);
