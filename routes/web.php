@@ -31,6 +31,7 @@ Route::get('/users', 'UserController@index');
 Route::post('/users/create', 'UserController@create');
 Route::patch('/users/update/{user}', 'UserController@update');
 Route::patch('/users/delete/{user}', 'UserController@delete');
+Route::post('/users/filter', 'UserController@filter');
 
 
 Route::get('/transactions', 'TaskController@index');

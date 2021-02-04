@@ -71,7 +71,7 @@ class SaleTypeController extends Controller
         $newLog = new Log;
         $newLog->tracker_type = $saletype->type;
         $newLog->activity_type = "MODIFY";
-        $newLog->log_details = "Updated a sale type from the task/subtask/outcome <b>".$saletype->task->name."/".$saletype->subtask->name."/".$saletype->outcome->name."] that is updated from a name of <b>".$saletype->name."</b> to <b>".$request->name."</b> and from a description of <b>".$saletype->description."</b> to <b>".$request->description."</b>.";
+        $newLog->log_details = "Updated a sale type from the task/subtask/outcome <b>".$saletype->task->name."/".$saletype->subtask->name."/".$saletype->outcome->name."</b> that is updated from a name of <b>".$saletype->name."</b> to <b>".$request->name."</b> and from a description of <b>".$saletype->description."</b> to <b>".$request->description."</b>.";
         $newLog->name = $request->name;
         $newLog->description = $request->description;
         $newLog->added_by = Auth::user()->id;

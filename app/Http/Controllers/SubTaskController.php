@@ -56,7 +56,7 @@ class SubTaskController extends Controller
         $newLog = new Log;
         $newLog->tracker_type = $request->type;
         $newLog->activity_type = "CREATE";
-        $newLog->log_details = "Created a new subtask from the task <b>".$newSubTask->task->name."] with a name of <b>".$request->name."] and with a description of <b>".$request->description."</b>.";
+        $newLog->log_details = "Created a new subtask from the task <b>".$newSubTask->task->name."</b> with a name of <b>".$request->name."</b> and with a description of <b>".$request->description."</b>.";
         $newLog->name = $request->name;
         $newLog->description = $request->description;
         $newLog->added_by = $newSubTask->added_by;
